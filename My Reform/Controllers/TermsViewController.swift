@@ -49,6 +49,11 @@ class TermsViewController: UIViewController {
         $0.font = UIFont(name: "Avenir-Black", size: 18)
     }
     
+    private let termBtn1 = UIButton().then{
+        $0.tintColor = .systemGray
+        $0.setImage(UIImage(systemName: "chevron.forward"), for: .normal)
+    }
+    
     private let checkBox3 = TermsCheckButton().then{
         $0.backgroundColor = UIColor.gray
         $0.layer.cornerRadius = 20
@@ -58,6 +63,11 @@ class TermsViewController: UIViewController {
     private let Label3 = UILabel().then {
         $0.text = "(필수) 개인정보 처리방침"
         $0.font = UIFont(name: "Avenir-Black", size: 18)
+    }
+    
+    private let termBtn2 = UIButton().then{
+        $0.tintColor = .systemGray
+        $0.setImage(UIImage(systemName: "chevron.forward"), for: .normal)
     }
     
     private let checkBox4 = TermsCheckButton().then{
@@ -75,7 +85,9 @@ class TermsViewController: UIViewController {
         $0.backgroundColor = UIColor.gray
         $0.layer.cornerRadius = 8
         $0.setTitle("다음", for: .normal)
+        $0.isEnabled = false
     }
+    
     
     private let sectionLine: UIView = {
         let view = UIView()
@@ -89,6 +101,10 @@ class TermsViewController: UIViewController {
 
         setUIView()
         setUIConstraints()
+        addTargets()
+        
+        //체크버튼 4개 확인
+        checkedFourButton()
         
     }
 
@@ -108,6 +124,8 @@ class TermsViewController: UIViewController {
         view.addSubview(checkBox2)
         view.addSubview(checkBox3)
         view.addSubview(checkBox4)
+        view.addSubview(termBtn1)
+        view.addSubview(termBtn2)
     }
     
     func setUIConstraints() {
@@ -160,6 +178,13 @@ class TermsViewController: UIViewController {
             make.centerY.equalTo(checkBox2.snp.centerY)
         }
         
+        termBtn1.snp.makeConstraints { make in
+            make.width.height.equalTo(25)
+            make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing).offset(-20)
+            make.centerY.equalTo(Label2.snp.centerY)
+            
+        }
+        
         checkBox3.snp.makeConstraints { make in
             make.width.height.equalTo(30)
             make.top.equalTo(checkBox2.snp.bottom).offset(30)
@@ -170,6 +195,13 @@ class TermsViewController: UIViewController {
             make.leading.equalTo(checkBox3.snp.trailing).offset(20)
             make.top.equalTo(Label2.snp.bottom).offset(30)
             make.centerY.equalTo(checkBox3.snp.centerY)
+        }
+        
+        termBtn2.snp.makeConstraints { make in
+            make.width.height.equalTo(25)
+            make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing).offset(-20)
+            make.centerY.equalTo(Label3.snp.centerY)
+            
         }
         
         checkBox4.snp.makeConstraints { make in
@@ -193,12 +225,88 @@ class TermsViewController: UIViewController {
         }
     }
     
-
-//
-//    @objc func didTapCheckBox() {
-//        checkBox.backgroundColor = UIColor.mainColor
-//
-//    }
+    private func addTargets() {
+        // 서비스 이용약관 자세히 보기
+        termBtn1.addTarget(self, action: #selector(termBtn1Clicked), for: .touchUpInside)
+        // 개인정보 처리방침 자세히 보기
+        termBtn2.addTarget(self, action: #selector(termBtn2Clicked), for: .touchUpInside)
+        // 약관 전체동의 클릭 시
+        checkBoxAll.addTarget(self, action: #selector(checkBoxAllClicked), for: .touchUpInside)
+        // 다음 버튼 클릭 시
+        nextButton.addTarget(self, action: #selector(nextButtonClicked), for: .touchUpInside)
+    }
+    
+    @objc private func checkBoxAllClicked() {
+        
+        
+        if checkBoxAll.isChecked == true {
+            checkBox1.isChecked = true
+            checkBox2.isChecked = true
+            checkBox3.isChecked = true
+            checkBox4.isChecked = true
+            nextButton.backgroundColor = UIColor.mainColor
+            nextButton.isEnabled = true
+        }
+         else {
+            checkBox1.isChecked = false
+            checkBox2.isChecked = false
+            checkBox3.isChecked = false
+            checkBox4.isChecked = false
+            nextButton.backgroundColor = .systemGray
+            nextButton.isEnabled = false
+        }
+    }
+    
+    @objc private func termBtn1Clicked() {
+        
+    }
+    
+    @objc private func termBtn2Clicked() {
+        
+    }
+    
+    @objc private func nextButtonClicked() {
+        let vc = addNameViewController()
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+    }
+    
+    // 체크 4개가 되었을 시 버튼 활성화
+    private func checkedFourButton() {
+        if (checkBox1.isChecked == true) && (checkBox2.isChecked == true) && (checkBox3.isChecked == true) && (checkBox4.isChecked == true) || (checkBoxAll.isChecked == true ){
+            // [] 버튼 비활성화였다가 활성화로 바꾸는 코드 추가
+            nextButton.isEnabled = true
+            nextButton.backgroundColor = UIColor.mainColor
+        } else {
+            nextButton.isEnabled = false
+            nextButton.backgroundColor = .systemGray
+        }
+    }
+    
+    
 
 }
 
+
+#if DEBUG
+import SwiftUI
+struct ViewControllerRepresentable: UIViewControllerRepresentable {
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+
+    }
+    @available(iOS 13.0.0, *)
+    func makeUIViewController(context: Context) -> some UIViewController {
+        SignUpViewController()
+    }
+}
+@available(iOS 13.0, *)
+struct ViewControllerRepresentable_PreviewProvider: PreviewProvider {
+    static var previews: some View {
+        Group {
+            ViewControllerRepresentable()
+                .ignoresSafeArea()
+                .previewDisplayName("Preview")
+                .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
+        }
+    }
+} #endif

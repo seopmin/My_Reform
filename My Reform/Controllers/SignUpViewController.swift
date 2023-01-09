@@ -7,8 +7,17 @@
 
 import UIKit
 import SnapKit
+import KakaoSDKCommon
+import KakaoSDKAuth
+import KakaoSDKUser
 
 class SignUpViewController: UIViewController {
+    
+    /* // 카카오 네이티브 키 값 가져오는 코드
+     let KAKAO_APP_KEY: String = Bundle.main.infoDictionary?["KAKAO_APP_KEY"] as? String ?? "KAKAO_APP_KEY is nil"
+     KakaoSDKCommon.initSDK(appKey: KAKAO_APP_KEY, loggingEnable:true)
+     */
+   
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -111,31 +120,125 @@ class SignUpViewController: UIViewController {
     
 
     @objc func kakaoButtonDidTap() {
-        self.present(TermsViewController(), animated: true)
-    }
-
-}
-
-#if DEBUG
-import SwiftUI
-struct ViewControllerRepresentable: UIViewControllerRepresentable {
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+        kakaoLoginButtonClicked()
         
     }
-    @available(iOS 13.0.0, *)
-    func makeUIViewController(context: Context) -> some UIViewController {
-        SignUpViewController()
+    
+    
+    private func kakaoLoginButtonClicked() {
+        
+        // 카카오톡 설치 여부 확인
+        if (UserApi.isKakaoTalkLoginAvailable()) {
+            // 카카오톡 로그인. api 호출 결과를 클로저로 전달.
+            loginWithApp()
+        } else {
+            // 만약, 카카오톡이 깔려있지 않을 경우에는 웹 브라우저로 카카오 로그인함.
+            loginWithWeb()
+            }
+        }
+
+    private func loginWithWeb() {
+        UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
+                if let error = error {
+                    print(error)
+                }
+                else {
+                    print("loginWithKakaoAccount() success.")
+
+                    //do something
+                    _ = oauthToken
+                    
+                    // 어세스토큰
+                    let accessToken = oauthToken?.accessToken
+                    print("어세스 토큰 정보입니다 !!!!!!!!!\(String(describing: accessToken))")
+                    
+                    //카카오 로그인을 통해 사용자 토큰을 발급 받은 후 사용자 관리 API 호출
+                    self.setUserInfo()
+                    let vc = TermsViewController()
+                    vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: true)
+                }
+            }
+        
     }
-}
-@available(iOS 13.0, *)
-struct ViewControllerRepresentable_PreviewProvider: PreviewProvider {
-    static var previews: some View {
-        Group {
-            ViewControllerRepresentable()
-                .ignoresSafeArea()
-                .previewDisplayName("Preview")
-                .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
+    
+    
+    private func loginWithApp() {
+        UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
+                if let error = error {
+                    print(error)
+                }
+                else {
+                    print("loginWithKakaoTalk() success.")
+
+                    //do something
+                    _ = oauthToken
+                    
+                    // 어세스토큰
+                    let accessToken = oauthToken?.accessToken
+                    print("어세스 토큰 정보입니다 @@@@@@@@@@@@@@\(String(describing: accessToken))")
+                                    
+                    //카카오 로그인을 통해 사용자 토큰을 발급 받은 후 사용자 관리 API 호출
+                    self.setUserInfo()
+                    let vc = TermsViewController()
+                    vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: true)
+                }
+            }
+    }
+    
+    private func setUserInfo() {
+        UserApi.shared.me() {(user, error) in
+            if let error = error {
+                print(error)
+            }
+            else {
+                print("me() success.")
+                //do something
+                _ = user
+                }
         }
     }
-} #endif
+    
+    private func setUserToken() {
+        // 사용자 액세스 토큰 정보 조회
+        UserApi.shared.accessTokenInfo {(accessTokenInfo, error) in
+            if let error = error {
+                print(error)
+            }
+            else {
+                print("accessTokenInfo() success.")
+
+                //do something
+                _ = accessTokenInfo
+                print("accessToken 정보 : \(accessTokenInfo!)")
+            }
+        }
+    }
+
+
+}
+
+//#if DEBUG
+//import SwiftUI
+//struct ViewControllerRepresentable: UIViewControllerRepresentable {
+//    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+//
+//    }
+//    @available(iOS 13.0.0, *)
+//    func makeUIViewController(context: Context) -> some UIViewController {
+//        SignUpViewController()
+//    }
+//}
+//@available(iOS 13.0, *)
+//struct ViewControllerRepresentable_PreviewProvider: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            ViewControllerRepresentable()
+//                .ignoresSafeArea()
+//                .previewDisplayName("Preview")
+//                .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
+//        }
+//    }
+//} #endif
 
