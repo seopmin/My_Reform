@@ -11,7 +11,7 @@ class SignUpViewController: UIViewController {
 
     private let titleLabel: UILabel = {
       let label = UILabel()
-      label.text = "밥 먹언?"
+      label.text = "마이리폼"
       label.textColor = .black
       label.font = .systemFont(ofSize: 40, weight: .ultraLight)
       return label

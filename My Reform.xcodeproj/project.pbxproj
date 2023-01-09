@@ -15,7 +15,6 @@
 		47FB54E629685E8300B3029C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB54E529685E8300B3029C /* HomeViewController.swift */; };
 		47FB54E829685E9000B3029C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB54E729685E9000B3029C /* SearchViewController.swift */; };
 		47FB54EA29685EA400B3029C /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB54E929685EA400B3029C /* MessageViewController.swift */; };
-		47FB54EC29685EAD00B3029C /* HeartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB54EB29685EAD00B3029C /* HeartViewController.swift */; };
 		47FB54EE29685EBF00B3029C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB54ED29685EBF00B3029C /* ProfileViewController.swift */; };
 		47FB54F0296867D300B3029C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB54EF296867D300B3029C /* SignUpViewController.swift */; };
 		47FB54F729686A2300B3029C /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB54F629686A2300B3029C /* UIColor.swift */; };
@@ -35,7 +34,6 @@
 		47FB54E529685E8300B3029C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		47FB54E729685E9000B3029C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		47FB54E929685EA400B3029C /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
-		47FB54EB29685EAD00B3029C /* HeartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartViewController.swift; sourceTree = "<group>"; };
 		47FB54ED29685EBF00B3029C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		47FB54EF296867D300B3029C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		47FB54F629686A2300B3029C /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -89,11 +87,7 @@
 		47FB54E429685A8D00B3029C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				47FB54E529685E8300B3029C /* HomeViewController.swift */,
-				47FB54E729685E9000B3029C /* SearchViewController.swift */,
-				47FB54E929685EA400B3029C /* MessageViewController.swift */,
-				47FB54EB29685EAD00B3029C /* HeartViewController.swift */,
-				47FB54ED29685EBF00B3029C /* ProfileViewController.swift */,
+				47FB5502296BD2A000B3029C /* Main */,
 				47FB54EF296867D300B3029C /* SignUpViewController.swift */,
 			);
 			path = Controllers;
@@ -146,6 +140,17 @@
 			children = (
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		47FB5502296BD2A000B3029C /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				47FB54E529685E8300B3029C /* HomeViewController.swift */,
+				47FB54E729685E9000B3029C /* SearchViewController.swift */,
+				47FB54E929685EA400B3029C /* MessageViewController.swift */,
+				47FB54ED29685EBF00B3029C /* ProfileViewController.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		7BAECCDF93A160CB54592779 /* Pods */ = {
@@ -287,7 +292,6 @@
 				47FB54E629685E8300B3029C /* HomeViewController.swift in Sources */,
 				47FB54F0296867D300B3029C /* SignUpViewController.swift in Sources */,
 				47FB54EE29685EBF00B3029C /* ProfileViewController.swift in Sources */,
-				47FB54EC29685EAD00B3029C /* HeartViewController.swift in Sources */,
 				47FB54F729686A2300B3029C /* UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
