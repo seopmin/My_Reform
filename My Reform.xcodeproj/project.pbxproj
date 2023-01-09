@@ -1,0 +1,503 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		47FB54D12968590000B3029C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB54D02968590000B3029C /* AppDelegate.swift */; };
+		47FB54D32968590000B3029C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB54D22968590000B3029C /* SceneDelegate.swift */; };
+		47FB54D52968590000B3029C /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB54D42968590000B3029C /* MainTabBarViewController.swift */; };
+		47FB54DA2968590200B3029C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47FB54D92968590200B3029C /* Assets.xcassets */; };
+		47FB54DD2968590200B3029C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47FB54DB2968590200B3029C /* LaunchScreen.storyboard */; };
+		47FB54E629685E8300B3029C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB54E529685E8300B3029C /* HomeViewController.swift */; };
+		47FB54E829685E9000B3029C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB54E729685E9000B3029C /* SearchViewController.swift */; };
+		47FB54EA29685EA400B3029C /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB54E929685EA400B3029C /* MessageViewController.swift */; };
+		47FB54EC29685EAD00B3029C /* HeartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB54EB29685EAD00B3029C /* HeartViewController.swift */; };
+		47FB54EE29685EBF00B3029C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB54ED29685EBF00B3029C /* ProfileViewController.swift */; };
+		47FB54F0296867D300B3029C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB54EF296867D300B3029C /* SignUpViewController.swift */; };
+		47FB54F729686A2300B3029C /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB54F629686A2300B3029C /* UIColor.swift */; };
+		FEA582A3655E8CAFF57EA26C /* Pods_My_Reform.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34B507B16C947CBB18B3A995 /* Pods_My_Reform.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0C98782F25E1596128E2DF0D /* Pods-My Reform.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My Reform.release.xcconfig"; path = "Target Support Files/Pods-My Reform/Pods-My Reform.release.xcconfig"; sourceTree = "<group>"; };
+		34B507B16C947CBB18B3A995 /* Pods_My_Reform.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My_Reform.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		47FB54CD2968590000B3029C /* My Reform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Reform.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		47FB54D02968590000B3029C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		47FB54D22968590000B3029C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		47FB54D42968590000B3029C /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		47FB54D92968590200B3029C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		47FB54DC2968590200B3029C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		47FB54DE2968590200B3029C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		47FB54E529685E8300B3029C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		47FB54E729685E9000B3029C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		47FB54E929685EA400B3029C /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		47FB54EB29685EAD00B3029C /* HeartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartViewController.swift; sourceTree = "<group>"; };
+		47FB54ED29685EBF00B3029C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		47FB54EF296867D300B3029C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		47FB54F629686A2300B3029C /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		5F644897E4B6FAE3A5572350 /* Pods-My Reform.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My Reform.debug.xcconfig"; path = "Target Support Files/Pods-My Reform/Pods-My Reform.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		47FB54CA2968590000B3029C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEA582A3655E8CAFF57EA26C /* Pods_My_Reform.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		47FB54C42968590000B3029C = {
+			isa = PBXGroup;
+			children = (
+				47FB54CF2968590000B3029C /* My Reform */,
+				47FB54CE2968590000B3029C /* Products */,
+				7BAECCDF93A160CB54592779 /* Pods */,
+				E479EFAB0D4A2326E8E2CA45 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		47FB54CE2968590000B3029C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				47FB54CD2968590000B3029C /* My Reform.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		47FB54CF2968590000B3029C /* My Reform */ = {
+			isa = PBXGroup;
+			children = (
+				47FB54F5296869C200B3029C /* AppDelegate */,
+				47FB54F12968688400B3029C /* Global */,
+				47FB54F829686FE700B3029C /* Models */,
+				47FB54F929686FF700B3029C /* Views */,
+				47FB54E429685A8D00B3029C /* Controllers */,
+				47FB54F3296868B600B3029C /* Resources */,
+				47FB54DE2968590200B3029C /* Info.plist */,
+			);
+			path = "My Reform";
+			sourceTree = "<group>";
+		};
+		47FB54E429685A8D00B3029C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				47FB54E529685E8300B3029C /* HomeViewController.swift */,
+				47FB54E729685E9000B3029C /* SearchViewController.swift */,
+				47FB54E929685EA400B3029C /* MessageViewController.swift */,
+				47FB54EB29685EAD00B3029C /* HeartViewController.swift */,
+				47FB54ED29685EBF00B3029C /* ProfileViewController.swift */,
+				47FB54EF296867D300B3029C /* SignUpViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		47FB54F12968688400B3029C /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				47FB54D42968590000B3029C /* MainTabBarViewController.swift */,
+				47FB54F629686A2300B3029C /* UIColor.swift */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		47FB54F3296868B600B3029C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				47FB54D92968590200B3029C /* Assets.xcassets */,
+				47FB54DB2968590200B3029C /* LaunchScreen.storyboard */,
+				47FB54F42968690000B3029C /* Font */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		47FB54F42968690000B3029C /* Font */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		47FB54F5296869C200B3029C /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				47FB54D02968590000B3029C /* AppDelegate.swift */,
+				47FB54D22968590000B3029C /* SceneDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		47FB54F829686FE700B3029C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		47FB54F929686FF700B3029C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7BAECCDF93A160CB54592779 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5F644897E4B6FAE3A5572350 /* Pods-My Reform.debug.xcconfig */,
+				0C98782F25E1596128E2DF0D /* Pods-My Reform.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E479EFAB0D4A2326E8E2CA45 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				34B507B16C947CBB18B3A995 /* Pods_My_Reform.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		47FB54CC2968590000B3029C /* My Reform */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 47FB54E12968590200B3029C /* Build configuration list for PBXNativeTarget "My Reform" */;
+			buildPhases = (
+				07C648C86030AD857F058D15 /* [CP] Check Pods Manifest.lock */,
+				47FB54C92968590000B3029C /* Sources */,
+				47FB54CA2968590000B3029C /* Frameworks */,
+				47FB54CB2968590000B3029C /* Resources */,
+				850B5EB27349037B8071A0D7 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "My Reform";
+			productName = "My Reform";
+			productReference = 47FB54CD2968590000B3029C /* My Reform.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		47FB54C52968590000B3029C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1400;
+				LastUpgradeCheck = 1400;
+				TargetAttributes = {
+					47FB54CC2968590000B3029C = {
+						CreatedOnToolsVersion = 14.0;
+					};
+				};
+			};
+			buildConfigurationList = 47FB54C82968590000B3029C /* Build configuration list for PBXProject "My Reform" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 47FB54C42968590000B3029C;
+			productRefGroup = 47FB54CE2968590000B3029C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				47FB54CC2968590000B3029C /* My Reform */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		47FB54CB2968590000B3029C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47FB54DD2968590200B3029C /* LaunchScreen.storyboard in Resources */,
+				47FB54DA2968590200B3029C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		07C648C86030AD857F058D15 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-My Reform-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		850B5EB27349037B8071A0D7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-My Reform/Pods-My Reform-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-My Reform/Pods-My Reform-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-My Reform/Pods-My Reform-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		47FB54C92968590000B3029C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47FB54E829685E9000B3029C /* SearchViewController.swift in Sources */,
+				47FB54D52968590000B3029C /* MainTabBarViewController.swift in Sources */,
+				47FB54D12968590000B3029C /* AppDelegate.swift in Sources */,
+				47FB54D32968590000B3029C /* SceneDelegate.swift in Sources */,
+				47FB54EA29685EA400B3029C /* MessageViewController.swift in Sources */,
+				47FB54E629685E8300B3029C /* HomeViewController.swift in Sources */,
+				47FB54F0296867D300B3029C /* SignUpViewController.swift in Sources */,
+				47FB54EE29685EBF00B3029C /* ProfileViewController.swift in Sources */,
+				47FB54EC29685EAD00B3029C /* HeartViewController.swift in Sources */,
+				47FB54F729686A2300B3029C /* UIColor.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		47FB54DB2968590200B3029C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				47FB54DC2968590200B3029C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		47FB54DF2968590200B3029C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		47FB54E02968590200B3029C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		47FB54E22968590200B3029C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F644897E4B6FAE3A5572350 /* Pods-My Reform.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F6SZ5LV55B;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "My Reform/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.devjoonn.My-Reform";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		47FB54E32968590200B3029C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C98782F25E1596128E2DF0D /* Pods-My Reform.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F6SZ5LV55B;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "My Reform/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.devjoonn.My-Reform";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		47FB54C82968590000B3029C /* Build configuration list for PBXProject "My Reform" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47FB54DF2968590200B3029C /* Debug */,
+				47FB54E02968590200B3029C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		47FB54E12968590200B3029C /* Build configuration list for PBXNativeTarget "My Reform" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47FB54E22968590200B3029C /* Debug */,
+				47FB54E32968590200B3029C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 47FB54C52968590000B3029C /* Project object */;
+}

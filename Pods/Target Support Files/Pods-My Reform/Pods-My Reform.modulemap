@@ -1,0 +1,6 @@
+framework module Pods_My_Reform {
+  umbrella header "Pods-My Reform-umbrella.h"
+
+  export *
+  module * { export * }
+}
