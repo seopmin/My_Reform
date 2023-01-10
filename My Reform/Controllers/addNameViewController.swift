@@ -98,16 +98,50 @@ class addNameViewController: UIViewController, UITextFieldDelegate {
         }
 
 
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)),name: UITextField.textDidChangeNotification, object: input)
         
 
         // Do any additional setup after loading the view.
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if (input.text!.count > 10) {
+            return false
+        } else if (input.text!.count == 10) {
+            input_length.textColor = .red
+            input_length.font = UIFont.boldSystemFont(ofSize: 22)
+            input_length.alpha = 0.6
+        } else {
+            input_length.textColor = .black
+            input_length.font = UIFont.systemFont(ofSize: 23)
+            input_length.alpha = 0.3
+            
+        }
         input_length.text = "(\(input.text!.count)/10)"
         
         return true
     }
+    
+    @objc private func textDidChange(_ notification: Notification) {
+            if let textField = notification.object as? UITextField {
+                if let text = textField.text {
+                    
+                    if text.count > 10 {
+                        // 8글자 넘어가면 자동으로 키보드 내려감
+                        textField.resignFirstResponder()
+                    }
+                    
+                    // 초과되는 텍스트 제거
+                    if text.count >= 10 {
+                        let index = text.index(text.startIndex, offsetBy: 10)
+                        let newString = text[text.startIndex..<index]
+                        textField.text = String(newString)
+                    }
+                    
+                
+                }
+            }
+        }
 
 }
 
