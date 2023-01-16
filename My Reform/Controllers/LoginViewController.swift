@@ -116,6 +116,7 @@ class LoginViewController: UIViewController {
         }
         
         kakao_button.addTarget(self, action: #selector(kakaoButtonDidTap), for: .touchUpInside)
+        apple_button.addTarget(self, action: #selector(appleButtonDidTap), for: .touchUpInside)
     }
     
 
@@ -123,6 +124,14 @@ class LoginViewController: UIViewController {
         kakaoLoginButtonClicked()
         
     }
+    
+    @objc func appleButtonDidTap() {
+        let vc = TermsViewController()
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+        
+    }
+    
     
     
     private func kakaoLoginButtonClicked() {
