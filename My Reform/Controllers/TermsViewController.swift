@@ -11,6 +11,8 @@ import Then
 
 class TermsViewController: UIViewController {
 
+    static var termAllow: Bool = false
+    
     private let serviceLabel = UILabel().then {
         $0.text = "서비스 이용동의"
         $0.font = UIFont(name: "Avenir-Black", size: 30)
@@ -266,7 +268,9 @@ class TermsViewController: UIViewController {
     }
     
     @objc private func nextButtonClicked() {
-        let vc = addNameViewController()
+        TermsViewController.termAllow = true
+        
+        let vc = SignUpViewController()
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
     }
