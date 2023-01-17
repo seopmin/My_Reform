@@ -6,6 +6,7 @@
 //
 import UIKit
 import SnapKit
+import Alamofire
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
     lazy var name_label = { () -> UILabel in
@@ -152,6 +153,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         //    btn.isEnabled = false
         return btn
     }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         name_input.delegate = self
@@ -342,9 +344,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     //다음 버튼 눌렀을 시
     @objc func nextFunc() {
         print("다음버튼 누름")
+        print("패스워드 값 - \(password_input.text ?? "")")
         
-        let userData = SignUpInput(id: id_input.text ?? "", email: email_input.text ?? "", nickname: name_input.text ?? "", password: password_input.text ?? "", marketing: TermsViewController.termAllow)
-        SignUpDataManager().posts(self, userData)
+        let userData = SignUpInput(id: id_input.text ?? "", email: email_input.text ?? "", nickname: name_input.text ?? "", pw: password_input.text ?? "", marketing: TermsViewController.termAllow)
+        SignUpDataManager.posts(self, userData)
     }
     
   @objc private func textDidChange(_ notification: Notification) {

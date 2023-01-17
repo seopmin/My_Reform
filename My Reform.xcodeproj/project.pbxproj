@@ -22,6 +22,7 @@
 		475266512975198F008D5F1D /* LoginInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475266502975198F008D5F1D /* LoginInput.swift */; };
 		4752665329751999008D5F1D /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4752665229751999008D5F1D /* LoginModel.swift */; };
 		47526655297529AE008D5F1D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47526654297529AE008D5F1D /* SignUpViewController.swift */; };
+		47C9C2E329769DE500DF89D8 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C9C2E229769DE500DF89D8 /* UITextField.swift */; };
 		47FB54D12968590000B3029C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB54D02968590000B3029C /* AppDelegate.swift */; };
 		47FB54D32968590000B3029C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB54D22968590000B3029C /* SceneDelegate.swift */; };
 		47FB54D52968590000B3029C /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB54D42968590000B3029C /* MainTabBarViewController.swift */; };
@@ -57,6 +58,7 @@
 		475266502975198F008D5F1D /* LoginInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInput.swift; sourceTree = "<group>"; };
 		4752665229751999008D5F1D /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		47526654297529AE008D5F1D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		47C9C2E229769DE500DF89D8 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		47FB54CD2968590000B3029C /* My Reform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Reform.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47FB54D02968590000B3029C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47FB54D22968590000B3029C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -209,8 +211,10 @@
 		47FB54F12968688400B3029C /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				47FB550B296BF3C100B3029C /* TermsCheckButton.swift */,
 				47FB54D42968590000B3029C /* MainTabBarViewController.swift */,
 				47FB54F629686A2300B3029C /* UIColor.swift */,
+				47C9C2E229769DE500DF89D8 /* UITextField.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -245,7 +249,6 @@
 			isa = PBXGroup;
 			children = (
 				370D8BBF296FE0A000E4B65E /* CategoryCell.swift */,
-				47FB550B296BF3C100B3029C /* TermsCheckButton.swift */,
 				4752663D29730AA6008D5F1D /* MainTableViewCell.swift */,
 			);
 			path = Views;
@@ -416,6 +419,7 @@
 				4752663C29730A55008D5F1D /* APICaller.swift in Sources */,
 				475266512975198F008D5F1D /* LoginInput.swift in Sources */,
 				4752664529750F25008D5F1D /* SignUpDataManager.swift in Sources */,
+				47C9C2E329769DE500DF89D8 /* UITextField.swift in Sources */,
 				47FB54F729686A2300B3029C /* UIColor.swift in Sources */,
 				47526655297529AE008D5F1D /* SignUpViewController.swift in Sources */,
 				47526637297309F1008D5F1D /* TitleViewModel.swift in Sources */,
