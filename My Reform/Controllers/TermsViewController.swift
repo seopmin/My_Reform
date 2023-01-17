@@ -11,6 +11,8 @@ import Then
 
 class TermsViewController: UIViewController {
 
+    static var termAllow: Bool = false
+    
     private let serviceLabel = UILabel().then {
         $0.text = "서비스 이용동의"
         $0.font = UIFont(name: "Avenir-Black", size: 30)
@@ -266,7 +268,9 @@ class TermsViewController: UIViewController {
     }
     
     @objc private func nextButtonClicked() {
-        let vc = addNameViewController()
+        TermsViewController.termAllow = true
+        
+        let vc = SignUpViewController()
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
     }
@@ -288,25 +292,3 @@ class TermsViewController: UIViewController {
 }
 
 
-#if DEBUG
-import SwiftUI
-struct ViewControllerRepresentable: UIViewControllerRepresentable {
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-
-    }
-    @available(iOS 13.0.0, *)
-    func makeUIViewController(context: Context) -> some UIViewController {
-        SignUpViewController()
-    }
-}
-@available(iOS 13.0, *)
-struct ViewControllerRepresentable_PreviewProvider: PreviewProvider {
-    static var previews: some View {
-        Group {
-            ViewControllerRepresentable()
-                .ignoresSafeArea()
-                .previewDisplayName("Preview")
-                .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
-        }
-    }
-} #endif
