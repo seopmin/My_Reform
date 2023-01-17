@@ -11,7 +11,7 @@ struct SignUpInput: Encodable{
     
     var id: String?
     var email: String?
-    var password: String?
+    var pw: String?
     var nickname: String?
     var marketing: Bool?
     
@@ -22,11 +22,11 @@ struct SignUpInput: Encodable{
     }
     
     //회원가입용 생성자
-    init(id: String, email: String, nickname: String, password: String, marketing: Bool) {
+    init(id: String, email: String, nickname: String, pw: String, marketing: Bool) {
         self.id = id
         self.email = email
         self.nickname = nickname
-        self.password = password
+        self.pw = pw
         self.marketing = marketing
     }
     
