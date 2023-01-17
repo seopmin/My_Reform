@@ -7,9 +7,8 @@
 
 import Foundation
 
-struct SingUpModel: Decodable{
-    var isSuccess: Bool
+struct SignUpModel: Decodable{
     var code: Int
-    var messsage : String?
-    var result: String?
+    var description : String?
+    var data: String?
 }

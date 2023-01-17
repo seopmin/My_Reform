@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Then
 import KakaoSDKCommon
 import KakaoSDKAuth
 import KakaoSDKUser
@@ -18,122 +19,177 @@ class LoginViewController: UIViewController {
      KakaoSDKCommon.initSDK(appKey: KAKAO_APP_KEY, loggingEnable:true)
      */
    
-    
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "마이리폼"
-        label.textColor = .black
-        label.font = .systemFont(ofSize: 40, weight: .ultraLight)
-        return label
-    }()
-    
-//    lazy var logo  = { () -> UIImageView
-//        let logo: UIImage = UIImage(named: "myReform_logo")!
-//
-//        return logo
-//    }()
-//
+
     
     // 로고 이미지
-    var logo: UIImageView {
-
-        let width: CGFloat = self.view.bounds.width*2/3
-        let height: CGFloat = self.view.bounds.height/14
-
-        // Set x, y of UIImageView.
-        let posX: CGFloat = (self.view.bounds.width - width)/2
-        let posY: CGFloat = (self.view.bounds.height - height)*2/5
-
-        // Create UIImageView.
-        let imageView = UIImageView(frame: CGRect(x: posX, y: posY, width: width, height: height))
-        let myImage: UIImage = UIImage(named: "myReform_logo")!
-
-        imageView.image = myImage
-        return imageView
+//    var logo: UIImageView {
+//
+//        let width: CGFloat = self.view.bounds.width*2/3
+//        let height: CGFloat = self.view.bounds.height/14
+//
+//        // Set x, y of UIImageView.
+//        let posX: CGFloat = (self.view.bounds.width - width)/2
+//        let posY: CGFloat = (self.view.bounds.height - height)*2/5
+//
+//        // Create UIImageView.
+//        let imageView = UIImageView(frame: CGRect(x: posX, y: posY, width: width, height: height))
+//        let myImage: UIImage = UIImage(named: "myReform_logo")!
+//
+//        imageView.image = myImage
+//        return imageView
+//    }
+    
+    private let logoImage = UIImageView().then {
+        let logo = UIImage(named: "myReform_logo")
+        $0.image = logo
     }
     
+    private let idLabel = UILabel().then {
+        $0.text = "아이디"
+        $0.textColor = UIColor.systemGray
+        $0.font = UIFont.boldSystemFont(ofSize: 15)
+    }
     
-    // "SNS 계정으로 간편하게 시작하기" 레이블
-    lazy var label = { () -> UILabel in
-        let label = UILabel()
-        label.text = "SNS 계정으로 간편하게 시작하기"
-        return label
-    }()
-
-    lazy var apple_button = { () -> UIButton in
-        let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "apple_image"), for: .normal)
-        button.tintColor = .white
-        button.backgroundColor = .white
-        return button
-    }()
-
-    lazy var kakao_button = { () -> UIButton in
-        let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "kakao_image"), for: .normal)
-        button.tintColor = .white
-        button.backgroundColor = .white
-        return button
-    }()
-
-
+    private let idTextfield = UITextField().then {
+        $0.placeholder = "아이디를 입력해주세요."
+        $0.font = UIFont.systemFont(ofSize: 20)
+        $0.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
+        $0.layer.cornerRadius = 7
+    }
     
-        
+    private let passwordLabel = UILabel().then {
+        $0.text = "비밀번호"
+        $0.textColor = UIColor.systemGray
+        $0.font = UIFont.boldSystemFont(ofSize: 15)
+    }
     
+    private let passwordTextfield = UITextField().then {
+        $0.placeholder = "비밀번호를 입력해주세요."
+        $0.font = UIFont.systemFont(ofSize: 20)
+        $0.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
+        $0.layer.cornerRadius = 7
+        $0.isSecureTextEntry = true
+    }
     
-//    lazy var appleLoginButton: UIButton = {
-//        let button = UIButton()
-//        button.addTarget(self,
-//                         action: #selector(appleLoginButtonTapped),
-//                         for: .touchUpInside)
-//        return button
-//    }()
+    private let loginBtn = UIButton().then {
+        $0.backgroundColor = UIColor.mainColor
+        $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        $0.setTitle("로그인", for: .normal)
+        $0.setTitleColor(.white, for: .normal)
+        $0.layer.cornerRadius = 10
+    }
+    
+    private let noAccountAskLabel = UILabel().then {
+        $0.text = "계정이 없으신가요?"
+        $0.font = UIFont.boldSystemFont(ofSize: 15)
+    }
+    
+    private let moveSignUpBtn = UIButton().then {
+        $0.setTitle("회원가입 하기", for: .normal)
+        $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        $0.setTitleColor(.orange, for: .normal)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-
-        self.view.addSubview(label)
-        self.view.addSubview(self.logo)
-        self.view.addSubview(apple_button)
-        self.view.addSubview(kakao_button)
         
-        label.snp.makeConstraints{ (make) in
+        
+        setUIView()
+        setUIConstraints()
+        
+        
+        moveSignUpBtn.addTarget(self, action: #selector(moveSignup), for: .touchUpInside)
+        
+        
+    }
+    
+    @objc func moveSignup() {
+        let vc = TermsViewController()
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+    }
+    
+    private func setUIView() {
+        self.view.addSubview(logoImage)
+        self.view.addSubview(idLabel)
+        self.view.addSubview(idTextfield)
+        self.view.addSubview(passwordLabel)
+        self.view.addSubview(passwordTextfield)
+        self.view.addSubview(loginBtn)
+        self.view.addSubview(noAccountAskLabel)
+        self.view.addSubview(moveSignUpBtn)
+    }
+    
+    private func setUIConstraints() {
+        
+        logoImage.snp.makeConstraints{ (make) in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(170)
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(kakao_button).offset(-100)
         }
         
-        apple_button.snp.makeConstraints{ (make) in
-            make.height.width.equalTo(70)
-            make.centerX.equalToSuperview().offset(50)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-100)
+        idLabel.snp.makeConstraints { make in
+            make.top.equalTo(logoImage.snp.bottom).inset(-130)
+            make.leading.equalToSuperview().inset(30)
         }
         
-        kakao_button.snp.makeConstraints{ (make) in
-            make.height.width.equalTo(70)
-            make.centerX.equalToSuperview().offset(-50)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-100)
+        idTextfield.snp.makeConstraints { make in
+            make.top.equalTo(idLabel.snp.bottom).inset(-5)
+            make.leading.equalToSuperview().inset(20)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(50)
         }
         
-        kakao_button.addTarget(self, action: #selector(kakaoButtonDidTap), for: .touchUpInside)
-        apple_button.addTarget(self, action: #selector(appleButtonDidTap), for: .touchUpInside)
+        passwordLabel.snp.makeConstraints { make in
+            make.top.equalTo(idTextfield.snp.bottom).inset(-15)
+            make.leading.equalToSuperview().inset(30)
+        }
+        
+        passwordTextfield.snp.makeConstraints { make in
+            make.top.equalTo(passwordLabel.snp.bottom).inset(-5)
+            make.leading.equalToSuperview().inset(20)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(50)
+        }
+        
+        loginBtn.snp.makeConstraints { make in
+            make.top.equalTo(passwordTextfield.snp.bottom).inset(-25)
+            make.centerX.equalToSuperview()
+            make.leading.equalToSuperview().inset(20)
+            make.height.equalTo(50)
+        }
+        
+        noAccountAskLabel.snp.makeConstraints { make in
+            make.top.equalTo(loginBtn.snp.bottom).inset(-10)
+            make.leading.equalToSuperview().inset(80)
+        }
+        
+        moveSignUpBtn.snp.makeConstraints { make in
+            make.top.equalTo(loginBtn.snp.bottom).inset(-20)
+            make.leading.equalTo(noAccountAskLabel.snp.trailing).inset(-20)
+            make.centerY.equalTo(noAccountAskLabel.snp.centerY)
+            
+        }
+        
     }
     
-
-    @objc func kakaoButtonDidTap() {
-        kakaoLoginButtonClicked()
-        
-    }
     
-    @objc func appleButtonDidTap() {
+    @objc func loginBtnDidTap() {
+        // 로그인 api 처리 []
+        
         let vc = TermsViewController()
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
         
     }
+
+}
+
+// MARK: 카카오 API
+extension LoginViewController {
     
-    
-    
+    // 카카오 로그인 버튼 addTarget에 kakaoLoginButtonClicked() 추가 - []
     private func kakaoLoginButtonClicked() {
         
         // 카카오톡 설치 여부 확인
@@ -224,30 +280,28 @@ class LoginViewController: UIViewController {
             }
         }
     }
-
-
 }
 
-//#if DEBUG
-//import SwiftUI
-//struct ViewControllerRepresentable: UIViewControllerRepresentable {
-//    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-//
-//    }
-//    @available(iOS 13.0.0, *)
-//    func makeUIViewController(context: Context) -> some UIViewController {
-//        SignUpViewController()
-//    }
-//}
-//@available(iOS 13.0, *)
-//struct ViewControllerRepresentable_PreviewProvider: PreviewProvider {
-//    static var previews: some View {
-//        Group {
-//            ViewControllerRepresentable()
-//                .ignoresSafeArea()
-//                .previewDisplayName("Preview")
-//                .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
-//        }
-//    }
-//} #endif
+#if DEBUG
+import SwiftUI
+struct ViewControllerRepresentable: UIViewControllerRepresentable {
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+
+    }
+    @available(iOS 13.0.0, *)
+    func makeUIViewController(context: Context) -> some UIViewController {
+        LoginViewController()
+    }
+}
+@available(iOS 13.0, *)
+struct ViewControllerRepresentable_PreviewProvider: PreviewProvider {
+    static var previews: some View {
+        Group {
+            ViewControllerRepresentable()
+                .ignoresSafeArea()
+                .previewDisplayName("Preview")
+                .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
+        }
+    }
+} #endif
 

@@ -10,7 +10,7 @@ import Foundation
 struct LoginModel : Decodable {
     var isSuccess : Bool
     var code : Int
-    var message : String
+    var message : String?
     var result : LoginModelResult?
     
 }
