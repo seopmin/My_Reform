@@ -9,5 +9,11 @@ import Foundation
 
 struct LoginInput: Encodable{
     var id: String?
-    var password: String?
+    var pw: String?
+    
+    // 회원가입용 생성자
+    init(id: String?, pw: String?) {
+        self.id = id
+        self.pw = pw
+    }
 }

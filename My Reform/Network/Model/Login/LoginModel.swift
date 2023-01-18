@@ -8,18 +8,17 @@
 import Foundation
 
 struct LoginModel : Decodable {
-    var isSuccess : Bool
-    var code : Int
-    var message : String?
-    var result : LoginModelResult?
-    
+    var status : Int
+    var code : String?
+    var description : String?
+    var token : String?
 }
 
-struct LoginModelResult : Decodable {
-    var token : Token?
-}
-
-struct Token : Decodable {
-    var accessToken : String?
-    var refreshToken : String?
-}
+//struct LoginModelResult : Decodable {
+//    var token : Token?
+//}
+//
+//struct Token : Decodable {
+//    var accessToken : String?
+//    var refreshToken : String?
+//}

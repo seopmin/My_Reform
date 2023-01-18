@@ -8,9 +8,9 @@
 import Foundation
 import Alamofire
 
-class SignUpDataManager{
+class SignUpDataManager {
     
-    
+    static var Headers : HTTPHeaders = ["Content-Type" : "application/json"]
     
 //    // 아이디 중복검사
 //    func getsID(_ viewController: SignUpViewController, id: String){
@@ -37,18 +37,20 @@ class SignUpDataManager{
 //            }
 //        }
 //    }
-    static var Headers : HTTPHeaders = ["Content-Type" : "application/json"]
-    // 서버에 값 전송
+    
+    
+    // 서버에 회원가입 값 전송
     static func posts(_ viewController: SignUpViewController, _ parameter: SignUpInput){
-        AF.request("http://211.176.69.65:8080/users/new-user", method: .post, parameters: parameter, encoder: JSONParameterEncoder.default, headers: Headers).validate(statusCode: 200..<600).responseDecodable(of: SignUpModel.self) { response in
+        AF.request("http://211.176.69.65:8080/users/new-user", method: .post, parameters: parameter, encoder: JSONParameterEncoder.default, headers: Headers).validate(statusCode: 200..<500).responseDecodable(of: SignUpModel.self) { response in
             switch response.result {
             case .success(let result):
-                print("로그인 성공")
-                viewController.checkSignUpResultCode(result.code)
+                print("회원가입 데이터 전송 성공")
+                print(result)
+                viewController.checkSignUpResultCode(result.status)
             case .failure(let error):
-                print("로그인 실패")
+                print("회원가입 데이터 전송 실패")
                 print(error.localizedDescription)
-                print(response.error)
+                print(response.error ?? "")
             }
         }
     }

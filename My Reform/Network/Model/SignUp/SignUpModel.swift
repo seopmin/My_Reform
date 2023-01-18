@@ -8,7 +8,7 @@
 import Foundation
 
 struct SignUpModel: Decodable{
-    var code: Int
+    var status: Int
+    var code: String?
     var description : String?
-    var data: String?
 }
