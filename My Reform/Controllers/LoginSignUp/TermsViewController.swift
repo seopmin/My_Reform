@@ -99,7 +99,7 @@ class TermsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemBackground
+        self.view.backgroundColor = .white
 
         setUIView()
         setUIConstraints()
@@ -236,6 +236,19 @@ class TermsViewController: UIViewController {
         checkBoxAll.addTarget(self, action: #selector(checkBoxAllClicked), for: .touchUpInside)
         // 다음 버튼 클릭 시
         nextButton.addTarget(self, action: #selector(nextButtonClicked), for: .touchUpInside)
+        
+        termBtn1.addTarget(self, action: #selector(moveUserServiceAllow), for: .touchUpInside)
+        termBtn2.addTarget(self, action: #selector(moveUserPrivacyAllow), for: .touchUpInside)
+    }
+    
+    @objc func moveUserServiceAllow() {
+        let vc = UserServiceAllowViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func moveUserPrivacyAllow() {
+        let vc = UserPrivacyAllowViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc private func checkBoxAllClicked() {
@@ -271,8 +284,7 @@ class TermsViewController: UIViewController {
         TermsViewController.termAllow = true
         
         let vc = SignUpViewController()
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     // 체크 4개가 되었을 시 버튼 활성화

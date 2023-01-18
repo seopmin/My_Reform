@@ -149,7 +149,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         let btn = UIButton()
         btn.backgroundColor = .systemPurple
         btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        btn.setTitle("다음", for: .normal)
+        btn.setTitle("회원가입 완료", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.layer.cornerRadius = 8
         // 버튼 비활성화
@@ -345,11 +345,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     //다음 버튼 눌렀을 시
     @objc func nextFunc() {
-        print("다음버튼 누름")
-        print("패스워드 값 - \(password_input.text ?? "")")
+        self.navigationController?.popToRootViewController(animated: true)
         
-        let userData = SignUpInput(id: id_input.text ?? "", email: email_input.text ?? "", nickname: name_input.text ?? "", pw: password_input.text ?? "", marketing: TermsViewController.termAllow)
-        SignUpDataManager.posts(self, userData)
+//        let userData = SignUpInput(id: id_input.text ?? "", email: email_input.text ?? "", nickname: name_input.text ?? "", pw: password_input.text ?? "", marketing: TermsViewController.termAllow)
+//        SignUpDataManager.posts(self, userData)
     }
     
   @objc private func textDidChange(_ notification: Notification) {
@@ -373,8 +372,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
 //MARK: - API
 extension SignUpViewController{
     
-    func checkSignUpResultCode(_ code: Int){
-        switch(code){
+    func checkSignUpResultCode(_ status: Int){
+        switch(status){
         case 200:
             let alert = UIAlertController()
             alert.title = "회원가입을 축하합니다!"
@@ -412,12 +411,11 @@ extension SignUpViewController{
 //            view.idCanUseLabel.textColor = UIColor.mainColor
 //            return
 //
-//        case 2017:
+//        case 400:
 //            view.idCanUseLabel.isHidden = false
 //            view.idCanUseLabel.text = "*중복된 이메일 입니다."
 //            view.idCanUseLabel.textColor = .systemRed
 //            isValidEmail = false
-//
 //            return
         default:
             print("데이터베이스 오류")
