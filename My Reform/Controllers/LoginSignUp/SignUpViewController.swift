@@ -149,7 +149,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         let btn = UIButton()
         btn.backgroundColor = .systemPurple
         btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        btn.setTitle("회원가입 완료", for: .normal)
+        btn.setTitle("다음", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.layer.cornerRadius = 8
         // 버튼 비활성화
@@ -345,10 +345,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     //다음 버튼 눌렀을 시
     @objc func nextFunc() {
-        self.navigationController?.popToRootViewController(animated: true)
-        
-//        let userData = SignUpInput(id: id_input.text ?? "", email: email_input.text ?? "", nickname: name_input.text ?? "", pw: password_input.text ?? "", marketing: TermsViewController.termAllow)
-//        SignUpDataManager.posts(self, userData)
+        let userData = SignUpInput(id: id_input.text ?? "", email: email_input.text ?? "", nickname: name_input.text ?? "", pw: password_input.text ?? "", marketing: TermsViewController.termAllow)
+        SignUpDataManager.posts(self, userData)
     }
     
   @objc private func textDidChange(_ notification: Notification) {
@@ -368,69 +366,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
       }
     }
 }
-
-//MARK: - API
-extension SignUpViewController{
-    
-    func checkSignUpResultCode(_ status: Int){
-        switch(status){
-        case 200:
-            let alert = UIAlertController()
-            alert.title = "회원가입을 축하합니다!"
-            alert.message = "My Reform 서비스를 자유롭게 이용해보세요."
-            let alertAction = UIAlertAction(title: "확인", style: .default) {_ in
-                self.navigationController?.popToRootViewController(animated: true)
-            }
-            alert.addAction(alertAction)
-            
-            self.present(alert, animated: true, completion: nil)
-            alert.modalPresentationStyle = .overFullScreen
-            return
-        case 400:
-//            view.nextButton.isEnabled = false
-//            view.idCanUseLabel.isHidden = false
-//            view.idCanUseLabel.text = "중복된 아이디 입니다."
-            return
-        default:
-            print("데이터베이스 오류")
-            let alert = UIAlertController()
-            alert.title = "서버 오류"
-            alert.message = "서버에서 오류가 발생했습니다. 잠시 후 다시 시도해주세요."
-            let alertAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-            alert.addAction(alertAction)
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
-    }
-    
-    func checkEmailApiResultCode(_ code: Int){
-        
-        switch code {
-//        case 200:
-//            view.idCanUseLabel.text = "*사용 가능한 이메일입니다."
-//            view.idCanUseLabel.textColor = UIColor.mainColor
-//            return
-//
-//        case 400:
-//            view.idCanUseLabel.isHidden = false
-//            view.idCanUseLabel.text = "*중복된 이메일 입니다."
-//            view.idCanUseLabel.textColor = .systemRed
-//            isValidEmail = false
-//            return
-        default:
-            print("데이터베이스 오류")
-            let alert = UIAlertController()
-            alert.title = "서버 오류"
-            alert.message = "서버에서 오류가 발생했습니다. 잠시 후 다시 시도해주세요."
-            let alertAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-            alert.addAction(alertAction)
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
-        
-    }
-}
-
 
 
 #if DEBUG

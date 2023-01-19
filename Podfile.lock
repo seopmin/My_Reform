@@ -11,6 +11,9 @@ PODS:
     - KakaoSDKCommon/Common (= 2.11.2)
   - KakaoSDKUser (2.11.2):
     - KakaoSDKAuth (= 2.11.2)
+  - SDWebImage (5.14.3):
+    - SDWebImage/Core (= 5.14.3)
+  - SDWebImage/Core (5.14.3)
   - SnapKit (5.6.0)
   - SwiftyJSON (5.0.1)
   - Then (3.0.0)
@@ -20,6 +23,7 @@ DEPENDENCIES:
   - KakaoSDKAuth
   - KakaoSDKCommon
   - KakaoSDKUser
+  - SDWebImage (~> 5.0)
   - SnapKit (~> 5.6.0)
   - SwiftyJSON
   - Then
@@ -30,6 +34,7 @@ SPEC REPOS:
     - KakaoSDKAuth
     - KakaoSDKCommon
     - KakaoSDKUser
+    - SDWebImage
     - SnapKit
     - SwiftyJSON
     - Then
@@ -39,10 +44,11 @@ SPEC CHECKSUMS:
   KakaoSDKAuth: 98f90fb67b2c2015cc94066a4489d54bb2f2a68e
   KakaoSDKCommon: 83fef177bcad9a8f9cb728f92e04a464882d3a82
   KakaoSDKUser: bf7b02e23257199995cdd03d59feb716416d14d6
+  SDWebImage: 9c36e66c8ce4620b41a7407698dda44211a96764
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: bb49844c96aea7c23b106ed5423588cf4be4f2ad
+PODFILE CHECKSUM: 45a80c6b90ed8ad02a1744fb08452bd67456520b
 
 COCOAPODS: 1.11.3

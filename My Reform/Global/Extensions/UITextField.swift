@@ -9,6 +9,7 @@ import UIKit
 
 extension UITextField {
     
+    // 텍스트 필드 값의 왼쪽부분에 공백 넣기
   func addLeftPadding() {
     let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.frame.height))
     self.leftView = paddingView
