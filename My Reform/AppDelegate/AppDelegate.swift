@@ -37,8 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         func moveHomeViewController(){
             self.window = UIWindow(frame: UIScreen.main.bounds)
-            navigationController = UINavigationController(rootViewController: MainTabBarViewController())
-            self.window?.rootViewController = navigationController
+            // MainTabBarViewController 자체가 Navigation Controller로 되어있음
+            self.window?.rootViewController = MainTabBarViewController()
             self.window?.makeKeyAndVisible()
             self.window?.backgroundColor = .white
         }
