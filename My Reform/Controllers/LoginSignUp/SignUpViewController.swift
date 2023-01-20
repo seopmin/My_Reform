@@ -9,10 +9,14 @@ import SnapKit
 import Alamofire
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
+    
+    var marketingAllow: Bool = false
+    static var signUpNickname = ""
+    
     lazy var name_label = { () -> UILabel in
         let label = UILabel()
         label.text = "닉네임"
-        label.font = UIFont.boldSystemFont(ofSize: 25)
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         return label
     }()
     lazy var name_label_2 = { () -> UILabel in
@@ -36,16 +40,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         label.alpha = 0.3
         return label
     }()
-    lazy var name_check_btn = { () -> UIButton in
-        let btn = UIButton()
-        btn.backgroundColor = .systemPurple
-        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        btn.setTitle("중복확인", for: .normal)
-        btn.setTitleColor(.white, for: .normal)
-        btn.layer.cornerRadius = 8
-        btn.isEnabled = false
-        return btn
-    }()
     lazy var usable_name_label = { () -> UILabel in
         let label = UILabel()
         label.text = "사용할 수 있는 닉네임이에요"
@@ -58,7 +52,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     lazy var id_label = { () -> UILabel in
         let label = UILabel()
         label.text = "아이디"
-        label.font = UIFont.boldSystemFont(ofSize: 25)
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         return label
     }()
     lazy var id_label_2 = { () -> UILabel in
@@ -82,16 +76,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         label.alpha = 0.3
         return label
     }()
-    lazy var id_check_btn = { () -> UIButton in
-        let btn = UIButton()
-        btn.backgroundColor = .systemPurple
-        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        btn.setTitle("중복확인", for: .normal)
-        btn.setTitleColor(.white, for: .normal)
-        btn.layer.cornerRadius = 8
-        btn.isEnabled = false
-        return btn
-    }()
     lazy var usable_id_label = { () -> UILabel in
         let label = UILabel()
         label.text = "사용할 수 있는 아이디예요"
@@ -103,7 +87,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     lazy var email_label = { () -> UILabel in
         let label = UILabel()
         label.text = "이메일"
-        label.font = UIFont.boldSystemFont(ofSize: 25)
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         return label
     }()
     lazy var email_label_2 = { () -> UILabel in
@@ -115,6 +99,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     lazy var email_input = { () -> UITextField in
         let text = UITextField()
         text.placeholder = " 이메일을 입력해주세요"
+//        text.keyboardType(.emailAddress).autocapitalization(.none)
         text.font = UIFont.systemFont(ofSize: 20)
         text.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
         text.layer.cornerRadius = 10.0
@@ -124,7 +109,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     lazy var password_label = { () -> UILabel in
         let label = UILabel()
         label.text = "비밀번호"
-        label.font = UIFont.boldSystemFont(ofSize: 25)
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         return label
     }()
     lazy var password_label_2 = { () -> UILabel in
@@ -142,15 +127,38 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         text.isSecureTextEntry = true
         return text
     }()
+    lazy var usable_password_label = { () -> UILabel in
+        let label = UILabel()
+        label.text = "비밀번호가 너무 짧아요"
+        label.font = UIFont.systemFont(ofSize: 10)
+        label.textColor = .systemPurple
+        return label
+    }
+    lazy var password_check_label = { () -> UILabel in
+        let label = UILabel()
+        label.text = "비밀번호 확인"
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        return label
+    }()
+    lazy var password_check_input = { () -> UITextField in
+        let text = UITextField()
+        text.placeholder = " 비밀번호를 다시 한 번 입력해주세요"
+        text.font = UIFont.systemFont(ofSize: 20)
+        text.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
+        text.layer.cornerRadius = 10.0
+        text.isSecureTextEntry = true
+        return text
+    }()
     lazy var next_btn = { () -> UIButton in
         let btn = UIButton()
-        btn.backgroundColor = .systemPurple
+        btn.backgroundColor = UIColor.mainColor
         btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         btn.setTitle("다음", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.layer.cornerRadius = 8
         // 버튼 비활성화
-        //    btn.isEnabled = false
+        btn.isEnabled = true
+//        btn.backgroundColor = UIColor.systemPurple.withAlphaComponent(0.5)
         return btn
     }()
     
@@ -158,11 +166,24 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         name_input.delegate = self
         id_input.delegate = self
+        email_input.delegate = self
+        password_input.delegate = self
+        password_check_input.delegate = self
+        
         self.view.backgroundColor = .systemBackground
         setUIView()
         setUIConstraints()
+        
+        
+        
         name_input.addTarget(self, action: #selector(textField), for: .editingChanged)
         id_input.addTarget(self, action: #selector(textField2), for: .editingChanged)
+        name_input.addTarget(self, action: #selector(checkFunc), for: .editingChanged)
+        id_input.addTarget(self, action: #selector(checkFunc), for: .editingChanged)
+        email_input.addTarget(self, action: #selector(checkFunc), for: .editingChanged)
+        password_input.addTarget(self, action: #selector(checkFunc), for: .editingChanged)
+        password_check_input.addTarget(self, action: #selector(checkFunc), for: .editingChanged)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)),name: UITextField.textDidChangeNotification, object: name_input)
         next_btn.addTarget(self, action: #selector(nextFunc), for: .touchDown)
     }
@@ -171,12 +192,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(name_label_2)
         view.addSubview(name_input)
         view.addSubview(name_length)
-        view.addSubview(name_check_btn)
         view.addSubview(id_label)
         view.addSubview(id_label_2)
         view.addSubview(id_input)
         view.addSubview(id_length)
-        view.addSubview(id_check_btn)
         view.addSubview(email_label)
         view.addSubview(email_label_2)
         view.addSubview(email_input)
@@ -186,6 +205,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(next_btn)
         view.addSubview(usable_name_label)
         view.addSubview(usable_id_label)
+        view.addSubview(password_check_input)
+        view.addSubview(password_check_label)
     }
     func setUIConstraints() {
         name_label.snp.makeConstraints { make in
@@ -198,28 +219,22 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
           )
         }
         name_input.snp.makeConstraints { make in
-          make.top.equalTo(name_label.snp.bottom).offset(10)
+          make.top.equalTo(name_label.snp.bottom).offset(5)
           make.leading.equalToSuperview().inset(20)
-          make.width.equalTo(250)
+          make.width.equalTo(350)
           make.height.equalTo(50)
         }
         name_length.snp.makeConstraints { make in
           make.trailing.equalTo(name_input.snp.trailing).inset(5)
           make.centerY.equalTo(name_input)
         }
-        name_check_btn.snp.makeConstraints { make in
-          make.width.equalTo(100)
-          make.height.equalTo(40)
-          make.leading.equalTo(name_input.snp.trailing).offset(5)
-          make.centerY.equalTo(name_input)
-        }
         usable_name_label.snp.makeConstraints { make in
             make.top.equalTo(name_input.snp.bottom).offset(3)
-            make.leading.equalTo(name_input.snp.leading)
+            make.leading.equalTo(id_label.snp.leading)
         }
         //------------
         id_label.snp.makeConstraints { make in
-          make.top.equalTo(name_input.snp.bottom).offset(20)
+          make.top.equalTo(name_input.snp.bottom).offset(30)
           make.centerX.equalTo(name_label)
         }
         id_label_2.snp.makeConstraints { make in
@@ -227,28 +242,22 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
           make.leading.equalTo(id_label.snp.trailing).offset(10)
         }
         id_input.snp.makeConstraints { make in
-          make.top.equalTo(id_label.snp.bottom).offset(10)
+          make.top.equalTo(id_label.snp.bottom).offset(5)
           make.leading.equalToSuperview().inset(20)
-          make.width.equalTo(250)
+          make.width.equalTo(350)
           make.height.equalTo(50)
         }
         id_length.snp.makeConstraints { make in
           make.trailing.equalTo(id_input.snp.trailing).inset(5)
           make.centerY.equalTo(id_input)
         }
-        id_check_btn.snp.makeConstraints { make in
-          make.width.equalTo(100)
-          make.height.equalTo(40)
-          make.leading.equalTo(id_input.snp.trailing).offset(5)
-          make.centerY.equalTo(id_input)
-        }
         usable_id_label.snp.makeConstraints { make in
             make.top.equalTo(id_input.snp.bottom).offset(3)
-            make.leading.equalTo(id_input.snp.leading)
+            make.leading.equalTo(id_label.snp.leading)
         }
         //-------
         email_label.snp.makeConstraints { make in
-          make.top.equalTo(id_input.snp.bottom).offset(20)
+          make.top.equalTo(id_input.snp.bottom).offset(30)
           make.centerX.equalTo(id_label)
         }
         email_label_2.snp.makeConstraints { make in
@@ -256,52 +265,56 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
           make.leading.equalTo(email_label.snp.trailing).offset(10)
         }
         email_input.snp.makeConstraints { make in
-          make.top.equalTo(email_label.snp.bottom).offset(10)
+          make.top.equalTo(email_label.snp.bottom).offset(5)
           make.leading.equalToSuperview().inset(20)
-          make.width.equalTo(300)
+          make.width.equalTo(350)
           make.height.equalTo(50)
         }
         //-----
         password_label.snp.makeConstraints { make in
-          make.top.equalTo(email_input.snp.bottom).offset(20)
-          make.centerX.equalTo(email_label)
+          make.top.equalTo(email_input.snp.bottom).offset(30)
+          make.leading.equalTo(email_label)
         }
         password_label_2.snp.makeConstraints { make in
           make.bottom.equalTo(password_label.snp.bottom)
           make.leading.equalTo(password_label.snp.trailing).offset(10)
         }
         password_input.snp.makeConstraints { make in
-          make.top.equalTo(password_label.snp.bottom).offset(10)
+          make.top.equalTo(password_label.snp.bottom).offset(5)
           make.leading.equalToSuperview().inset(20)
-          make.width.equalTo(300)
+          make.width.equalTo(350)
           make.height.equalTo(50)
         }
         //-----
+        password_check_label.snp.makeConstraints { make in
+            make.top.equalTo(password_input.snp.bottom).offset(30)
+            make.leading.equalTo(password_label)
+        }
+        password_check_input.snp.makeConstraints { make in
+            make.top.equalTo(password_check_label.snp.bottom).offset(5)
+            make.leading.equalToSuperview().inset(20)
+            make.width.equalTo(350)
+            make.height.equalTo(50)
+        }
+        //-----
         next_btn.snp.makeConstraints { make in
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(20)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(30)
             make.leading.trailing.equalToSuperview().inset(20)
             make.centerX.equalToSuperview()
             make.height.equalTo(50)    }
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if (name_input.text!.count > 2 && name_input.text!.count <= 10) {
-          name_check_btn.backgroundColor = .purple
-          name_check_btn.isEnabled = true
-          name_check_btn.addTarget(self, action: #selector(NextButtonDidTap), for: .touchUpInside)
-        } else {
-          name_check_btn.backgroundColor = .systemGray
-          name_check_btn.isEnabled = false
-        }
+        
         if (name_input.text!.count > 10) {
           return false
         } else if (name_input.text!.count == 10) {
           name_length.textColor = .red
-          name_length.font = UIFont.boldSystemFont(ofSize: 22)
+          name_length.font = UIFont.boldSystemFont(ofSize: 15)
           name_length.alpha = 0.6
         }else {
           name_length.textColor = .black
-          name_length.font = UIFont.systemFont(ofSize: 23)
+          name_length.font = UIFont.systemFont(ofSize: 15)
           name_length.alpha = 0.3
         }
         name_length.text = "\(name_input.text!.count)/10"
@@ -309,45 +322,39 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func textField2(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if (id_input.text!.count > 5 && id_input.text!.count <= 12) {
-          id_check_btn.backgroundColor = .purple
-          id_check_btn.isEnabled = true
-          id_check_btn.addTarget(self, action: #selector(IDButtonDidTap), for: .touchUpInside)
-        } else {
-          id_check_btn.backgroundColor = .purple
-          id_check_btn.isEnabled = false
-        }
         if (id_input.text!.count > 12) {
           return false
         } else if (id_input.text!.count == 12) {
           id_length.textColor = .red
-          id_length.font = UIFont.boldSystemFont(ofSize: 22)
+          id_length.font = UIFont.boldSystemFont(ofSize: 15)
           id_length.alpha = 0.6
         }else {
           id_length.textColor = .black
-          id_length.font = UIFont.systemFont(ofSize: 23)
+          id_length.font = UIFont.systemFont(ofSize: 15)
           id_length.alpha = 0.3
         }
-        id_length.text = "\(id_input.text!.count)/10"
+        id_length.text = "\(id_input.text!.count)/12"
         return true
     }
     
-    // 닉네임 버튼 눌릴 때 다음 행위 함수
-    @objc func NextButtonDidTap() {
-        print(name_input.text!)
-    }
-    // 아이디 중복 버튼 눌릴 때
-    @objc func IDButtonDidTap() {
-        print(id_input.text!)
+    @objc func checkFunc() {
+        if (name_input.text!.count<=10 && name_input.text!.count>0 && id_input.text!.count>=12 && id_input.text!.count>=6 && email_input.text!.count>0 && password_input.text!.count>0 && password_check_input.text!.count>0) {
+//            next_btn.isEnabled = true
+//            next_btn.backgroundColor = UIColor.systemPurple.withAlphaComponent(1)
+        } else {
+//            next_btn.isEnabled = false
+//            next_btn.backgroundColor = UIColor.systemPurple.withAlphaComponent(0.5)
+        }
     }
     
     //다음 버튼 눌렀을 시
     @objc func nextFunc() {
-        print("다음버튼 누름")
-        print("패스워드 값 - \(password_input.text ?? "")")
+        print("회원가입 버튼 누름")
         
-        let userData = SignUpInput(id: id_input.text ?? "", email: email_input.text ?? "", nickname: name_input.text ?? "", pw: password_input.text ?? "", marketing: TermsViewController.termAllow)
+        let userData = SignUpInput(id: id_input.text ?? "", email: email_input.text ?? "", nickname: name_input.text ?? "", pw: password_input.text ?? "", marketing: marketingAllow)
         SignUpDataManager.posts(self, userData)
+        
+        SignUpViewController.signUpNickname = name_input.text ?? ""
     }
     
   @objc private func textDidChange(_ notification: Notification) {
@@ -367,70 +374,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
       }
     }
 }
-
-//MARK: - API
-extension SignUpViewController{
-    
-    func checkSignUpResultCode(_ code: Int){
-        switch(code){
-        case 200:
-            let alert = UIAlertController()
-            alert.title = "회원가입을 축하합니다!"
-            alert.message = "My Reform 서비스를 자유롭게 이용해보세요."
-            let alertAction = UIAlertAction(title: "확인", style: .default) {_ in
-                self.navigationController?.popToRootViewController(animated: true)
-            }
-            alert.addAction(alertAction)
-            
-            self.present(alert, animated: true, completion: nil)
-            alert.modalPresentationStyle = .overFullScreen
-            return
-        case 400:
-//            view.nextButton.isEnabled = false
-//            view.idCanUseLabel.isHidden = false
-//            view.idCanUseLabel.text = "중복된 아이디 입니다."
-            return
-        default:
-            print("데이터베이스 오류")
-            let alert = UIAlertController()
-            alert.title = "서버 오류"
-            alert.message = "서버에서 오류가 발생했습니다. 잠시 후 다시 시도해주세요."
-            let alertAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-            alert.addAction(alertAction)
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
-    }
-    
-    func checkEmailApiResultCode(_ code: Int){
-        
-        switch code {
-//        case 200:
-//            view.idCanUseLabel.text = "*사용 가능한 이메일입니다."
-//            view.idCanUseLabel.textColor = UIColor.mainColor
-//            return
-//
-//        case 2017:
-//            view.idCanUseLabel.isHidden = false
-//            view.idCanUseLabel.text = "*중복된 이메일 입니다."
-//            view.idCanUseLabel.textColor = .systemRed
-//            isValidEmail = false
-//
-//            return
-        default:
-            print("데이터베이스 오류")
-            let alert = UIAlertController()
-            alert.title = "서버 오류"
-            alert.message = "서버에서 오류가 발생했습니다. 잠시 후 다시 시도해주세요."
-            let alertAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-            alert.addAction(alertAction)
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
-        
-    }
-}
-
 
 
 #if DEBUG

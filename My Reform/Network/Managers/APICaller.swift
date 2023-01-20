@@ -8,17 +8,19 @@
 
 import Foundation
 
-struct constants {
-//    static let API_KEY = //서버에서 가져온 값 추가 []
-//    static let baseURL = //서버에서 가져온 값 추가 []
-}
-
-enum APIError: Error {
-    case failedToGetData
-}
- 
-class APICaller {
-    static let shared = APICaller()
- 
+struct Constants {
+    //    static let API_KEY = //서버에서 가져온 값 추가 []
+    //    static let baseURL = //서버에서 가져온 값 추가 []
     
+    
+    
+    enum APIError: Error {
+        case failedToGetData
+    }
+    
+    class APICaller {
+        static let shared = APICaller()
+        
+        
+    }
 }

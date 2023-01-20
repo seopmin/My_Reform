@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NotificationViewController: UIViewController {
+class UploadViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
