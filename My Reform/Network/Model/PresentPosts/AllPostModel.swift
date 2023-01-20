@@ -39,7 +39,7 @@ struct AllViewValue : Decodable {
 }
 
 struct AllViewUser : Decodable {
-    let user_id : String
+    let userid : String
     let email : String
     let id : String
     let nickname : String

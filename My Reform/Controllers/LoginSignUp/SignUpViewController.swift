@@ -10,6 +10,7 @@ import Alamofire
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
     
+    var marketingAllow: Bool = false
     static var signUpNickname = ""
     
     lazy var name_label = { () -> UILabel in
@@ -150,14 +151,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }()
     lazy var next_btn = { () -> UIButton in
         let btn = UIButton()
-        btn.backgroundColor = .systemPurple
+        btn.backgroundColor = UIColor.mainColor
         btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         btn.setTitle("다음", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.layer.cornerRadius = 8
         // 버튼 비활성화
-        btn.isEnabled = false
-        btn.backgroundColor = UIColor.systemPurple.withAlphaComponent(0.5)
+        btn.isEnabled = true
+//        btn.backgroundColor = UIColor.systemPurple.withAlphaComponent(0.5)
         return btn
     }()
     
@@ -338,17 +339,19 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     @objc func checkFunc() {
         if (name_input.text!.count<=10 && name_input.text!.count>0 && id_input.text!.count>=12 && id_input.text!.count>=6 && email_input.text!.count>0 && password_input.text!.count>0 && password_check_input.text!.count>0) {
-            next_btn.isEnabled = true
-            next_btn.backgroundColor = UIColor.systemPurple.withAlphaComponent(1)
+//            next_btn.isEnabled = true
+//            next_btn.backgroundColor = UIColor.systemPurple.withAlphaComponent(1)
         } else {
-            next_btn.isEnabled = false
-            next_btn.backgroundColor = UIColor.systemPurple.withAlphaComponent(0.5)
+//            next_btn.isEnabled = false
+//            next_btn.backgroundColor = UIColor.systemPurple.withAlphaComponent(0.5)
         }
     }
     
     //다음 버튼 눌렀을 시
     @objc func nextFunc() {
-        let userData = SignUpInput(id: id_input.text ?? "", email: email_input.text ?? "", nickname: name_input.text ?? "", pw: password_input.text ?? "", marketing: TermsViewController.termAllow)
+        print("회원가입 버튼 누름")
+        
+        let userData = SignUpInput(id: id_input.text ?? "", email: email_input.text ?? "", nickname: name_input.text ?? "", pw: password_input.text ?? "", marketing: marketingAllow)
         SignUpDataManager.posts(self, userData)
         
         SignUpViewController.signUpNickname = name_input.text ?? ""
