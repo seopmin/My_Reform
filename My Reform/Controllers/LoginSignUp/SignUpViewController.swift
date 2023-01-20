@@ -8,7 +8,7 @@ import UIKit
 import SnapKit
 import Alamofire
 
-class SignUpViewController: UIViewController, UITextFieldDelegate {
+class SignUpViewController: UIViewController{
     lazy var name_label = { () -> UILabel in
         let label = UILabel()
         label.text = "닉네임"
@@ -160,11 +160,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        name_input.delegate = self
-        id_input.delegate = self
-        email_input.delegate = self
-        password_input.delegate = self
-        password_check_input.delegate = self
+        self.name_input.delegate = self
+        self.id_input.delegate = self
+        self.email_input.delegate = self
+        self.password_input.delegate = self
+        self.password_check_input.delegate = self
         
         self.view.backgroundColor = .systemBackground
         setUIView()
@@ -174,11 +174,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         name_input.addTarget(self, action: #selector(textField), for: .editingChanged)
         id_input.addTarget(self, action: #selector(textField2), for: .editingChanged)
-        name_input.addTarget(self, action: #selector(checkFunc), for: .editingChanged)
-        id_input.addTarget(self, action: #selector(checkFunc), for: .editingChanged)
-        email_input.addTarget(self, action: #selector(checkFunc), for: .editingChanged)
-        password_input.addTarget(self, action: #selector(checkFunc), for: .editingChanged)
-        password_check_input.addTarget(self, action: #selector(checkFunc), for: .editingChanged)
+        name_input.addTarget(self, action: #selector(btn_check), for: .editingChanged)
+        id_input.addTarget(self, action: #selector(btn_check), for: .editingChanged)
+        email_input.addTarget(self, action: #selector(btn_check), for: .editingChanged)
+        password_input.addTarget(self, action: #selector(btn_check), for: .editingChanged)
+        password_check_input.addTarget(self, action: #selector(btn_check), for: .editingChanged)
         
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)),name: UITextField.textDidChangeNotification, object: name_input)
         next_btn.addTarget(self, action: #selector(nextFunc), for: .touchDown)
@@ -299,9 +299,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             make.centerX.equalToSuperview()
             make.height.equalTo(50)    }
     }
-    
+}
+
+
+extension SignUpViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
         if (name_input.text!.count > 10) {
           return false
         } else if (name_input.text!.count == 10) {
@@ -333,14 +335,15 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    @objc func checkFunc() {
-        if (name_input.text!.count<=10 && name_input.text!.count>0 && id_input.text!.count>=12 && id_input.text!.count>=6 && email_input.text!.count>0 && password_input.text!.count>0 && password_check_input.text!.count>0) {
-            next_btn.isEnabled = true
+    @objc func btn_check(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if (name_input.text!.count<=10 && name_input.text!.count>0 && id_input.text!.count<=12 && id_input.text!.count>=6 && email_input.text!.count>0 && password_input.text!.count>0 && password_check_input.text!.count>0 && password_input.text == password_check_input.text) {
+            self.next_btn.isEnabled = true
             next_btn.backgroundColor = UIColor.systemPurple.withAlphaComponent(1)
         } else {
-            next_btn.isEnabled = false
+            self.next_btn.isEnabled = false
             next_btn.backgroundColor = UIColor.systemPurple.withAlphaComponent(0.5)
         }
+        return true
     }
     
     //다음 버튼 눌렀을 시
@@ -366,7 +369,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
       }
     }
 }
-
 
 #if DEBUG
 import SwiftUI
