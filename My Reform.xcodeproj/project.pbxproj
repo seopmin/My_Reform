@@ -39,7 +39,6 @@
 		47FB54F0296867D300B3029C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB54EF296867D300B3029C /* LoginViewController.swift */; };
 		47FB54F729686A2300B3029C /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB54F629686A2300B3029C /* UIColor.swift */; };
 		47FB550A296BE65E00B3029C /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB5509296BE65E00B3029C /* TermsViewController.swift */; };
-		47FB550C296BF3C100B3029C /* TermsCheckButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB550B296BF3C100B3029C /* TermsCheckButton.swift */; };
 		FEA582A3655E8CAFF57EA26C /* Pods_My_Reform.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34B507B16C947CBB18B3A995 /* Pods_My_Reform.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,7 +80,6 @@
 		47FB54EF296867D300B3029C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		47FB54F629686A2300B3029C /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		47FB5509296BE65E00B3029C /* TermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
-		47FB550B296BF3C100B3029C /* TermsCheckButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsCheckButton.swift; sourceTree = "<group>"; };
 		5F644897E4B6FAE3A5572350 /* Pods-My Reform.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My Reform.debug.xcconfig"; path = "Target Support Files/Pods-My Reform/Pods-My Reform.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -177,7 +175,6 @@
 		47C9C2E92979261000DF89D8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				47FB550B296BF3C100B3029C /* TermsCheckButton.swift */,
 				47FB54F629686A2300B3029C /* UIColor.swift */,
 				47C9C2E229769DE500DF89D8 /* UITextField.swift */,
 				47C9C2EA297931DB00DF89D8 /* UIImage.swift */,
@@ -449,7 +446,6 @@
 				370D8BC0296FE0A000E4B65E /* CategoryCell.swift in Sources */,
 				47FB54D12968590000B3029C /* AppDelegate.swift in Sources */,
 				47FB54EA29685EA400B3029C /* MessageViewController.swift in Sources */,
-				47FB550C296BF3C100B3029C /* TermsCheckButton.swift in Sources */,
 				47C9C2E829781D3000DF89D8 /* UserPrivacyAllowViewController.swift in Sources */,
 				4752665329751999008D5F1D /* LoginModel.swift in Sources */,
 				4752664C2975177D008D5F1D /* SignUpInput.swift in Sources */,

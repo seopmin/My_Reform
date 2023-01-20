@@ -14,7 +14,7 @@ class LoginDataManager {
     
     // 서버에 회원가입 값 전송
     static func posts(_ viewController: LoginViewController, _ parameter: LoginInput){
-        AF.request("http://211.176.69.65:8080/users", method: .post, parameters: parameter, encoder: JSONParameterEncoder.default, headers: Headers).validate(statusCode: 200..<500).responseDecodable(of: LoginModel.self) { response in
+        AF.request("http://175.210.229.95:9721/users", method: .post, parameters: parameter, encoder: JSONParameterEncoder.default, headers: Headers).validate(statusCode: 200..<500).responseDecodable(of: LoginModel.self) { response in
             switch response.result {
             case .success(let result):
                 print("로그인 데이터 전송 성공")
