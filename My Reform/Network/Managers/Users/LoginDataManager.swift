@@ -14,27 +14,38 @@ class LoginDataManager {
     
     // 서버에 회원가입 값 전송
     static func posts(_ viewController: LoginViewController, _ parameter: LoginInput){
-        AF.request("http://211.176.69.65:8080/users", method: .post, parameters: parameter, encoder: JSONParameterEncoder.default, headers: Headers).validate(statusCode: 200..<500).responseDecodable(of: LoginModel.self) { response in
+        AF.request("\(Constants.baseURL)/users", method: .post, parameters: parameter, encoder: JSONParameterEncoder.default, headers: Headers).validate(statusCode: 200..<500).responseDecodable(of: LoginModel.self) { response in
             switch response.result {
             case .success(let result):
                 print("로그인 데이터 전송 성공")
                 print(result)
                 switch(result.status) {
                 case 200:
+//                    UserDefaults.standard.set(result.result?.token?.accessToken, forKey: "accessToken")
                     print("로그인 성공")
-                    let vc = MainTabBarViewController()
-                    vc.modalPresentationStyle = .fullScreen
-                    viewController.present(vc, animated: true)
+                    viewController.navigationController?.pushViewController(MainTabBarViewController(), animated: true)
+                    viewController.navigationController?.isNavigationBarHidden = true
                     return
-                case 400:
-                    let alert = UIAlertController()
-                    alert.title = "로그인 실패"
-                    alert.message = "비밀번호를 다시 한 번 확인해주세요."
-                    let alertAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-                    alert.addAction(alertAction)
-                    viewController.present(alert, animated: true, completion: nil)
-                    alert.modalPresentationStyle = .overFullScreen
-                    return
+                case 404:
+                    if result.code == "B001" {
+                        let alert = UIAlertController()
+                        alert.title = "로그인 실패"
+                        alert.message = "id를 다시 한 번 확인해주세요."
+                        let alertAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+                        alert.addAction(alertAction)
+                        viewController.present(alert, animated: true, completion: nil)
+                        alert.modalPresentationStyle = .overFullScreen
+                        return
+                    } else if result.code == "B002" {
+                        let alert = UIAlertController()
+                        alert.title = "로그인 실패"
+                        alert.message = "비밀번호를 다시 한 번 확인해주세요."
+                        let alertAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+                        alert.addAction(alertAction)
+                        viewController.present(alert, animated: true, completion: nil)
+                        alert.modalPresentationStyle = .overFullScreen
+                        return
+                    }
                 default:
                     print("데이터베이스 오류")
                     let alert = UIAlertController()

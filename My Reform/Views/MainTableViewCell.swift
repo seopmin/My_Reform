@@ -8,17 +8,17 @@
 import UIKit
 import SnapKit
 import Then
+import SDWebImage
 
 class MainTableViewCell: UITableViewCell {
 
     static let identifier = "MainTableViewCell"
     
     
-    var heartButton = UIButton().then {
-        $0.setImage(UIImage(systemName: "heart", withConfiguration: UIImage.SymbolConfiguration(pointSize: 25)), for: .normal)
-        $0.tintColor = .systemGray
-        
-    }
+//    var heartButton = UIButton().then {
+//        $0.setImage(UIImage(systemName: "heart", withConfiguration: UIImage.SymbolConfiguration(pointSize: 25)), for: .normal)
+//        $0.tintColor = .systemGray
+//    }
     
     
     var titleCellLabel = UILabel().then {
@@ -48,7 +48,7 @@ class MainTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(titleCellImageView)
         contentView.addSubview(titleCellLabel)
-        contentView.addSubview(heartButton)
+//        contentView.addSubview(heartButton)
         contentView.addSubview(minuteCellLabel)
         contentView.addSubview(priceCellLabel)
         
@@ -63,10 +63,10 @@ class MainTableViewCell: UITableViewCell {
     func setUIConstraints() {
 
         titleCellImageView.snp.makeConstraints { make in
-            make.top.equalTo(contentView.snp.top).inset(15)
+            make.top.equalTo(contentView.snp.top).inset(10)
             make.leading.equalTo(contentView.snp.leading).inset(10)
             make.bottom.equalTo(contentView.snp.bottom).inset(-10)
-            make.width.height.equalTo(100)
+            make.width.equalTo(100)
         }
         
         titleCellLabel.snp.makeConstraints { make in
@@ -84,25 +84,24 @@ class MainTableViewCell: UITableViewCell {
             make.bottom.equalTo(contentView.snp.bottom).inset(18)
         }
         
-        heartButton.snp.makeConstraints { make in
-            make.trailing.equalTo(contentView.snp.trailing).inset(20)
-            make.centerY.equalTo(priceCellLabel.snp.centerY)
-            make.width.height.equalTo(40)
-        }
+//        heartButton.snp.makeConstraints { make in
+//            make.trailing.equalTo(contentView.snp.trailing).inset(20)
+//            make.centerY.equalTo(priceCellLabel.snp.centerY)
+//            make.width.height.equalTo(40)
+//        }
         
     }
     
     
-    //ViewModel 에서 사진 URL값과 포스터
-    public func configure(with model: TitleViewModel) {
+    //Model 에서 전달받은 값들 셀에 사진 URL값과 포스터
+    public func configure(with model: AllPostModel) {
         
-        // API 명세서 받으면 바꿔야함 []
-        
-//        titleCellImageView.sd_setImage(with: url, completed: nil)
-        titleCellLabel.text = model.titleName
-        minuteCellLabel.text = model.minute
-        priceCellLabel.text = model.price
-        heartButton.isEnabled = model.heart
+        // API 명세서 이미지 URL과 price 값 전달받으면 설정 []
+        guard let url = URL(string: model.value?.image?.imageURL ?? "") else { return }
+        titleCellImageView.sd_setImage(with: url, completed: nil)
+        titleCellLabel.text = model.Key.title
+        minuteCellLabel.text = model.Key.updateAt
+        priceCellLabel.text = String(model.Key.price)
         
     }
     

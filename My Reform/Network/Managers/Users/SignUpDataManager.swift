@@ -41,12 +41,46 @@ class SignUpDataManager {
     
     // 서버에 회원가입 값 전송
     static func posts(_ viewController: SignUpViewController, _ parameter: SignUpInput){
-        AF.request("http://211.176.69.65:8080/users/new-user", method: .post, parameters: parameter, encoder: JSONParameterEncoder.default, headers: Headers).validate(statusCode: 200..<500).responseDecodable(of: SignUpModel.self) { response in
+        AF.request("\(Constants.baseURL)/users/new-user", method: .post, parameters: parameter, encoder: JSONParameterEncoder.default, headers: Headers).validate(statusCode: 200..<500).responseDecodable(of: SignUpModel.self) { response in
             switch response.result {
             case .success(let result):
                 print("회원가입 데이터 전송 성공")
                 print(result)
-                viewController.checkSignUpResultCode(result.status)
+                switch(result.status){
+                case 201:
+                    let vc = CompleteSignUpViewController()
+                    viewController.navigationController?.pushViewController(vc, animated: true)
+                    return
+                case 409:
+                    if result.code == "A001" {
+                        let alert = UIAlertController()
+                        alert.title = "회원가입 실패"
+                        alert.message = "중복된 ID 입니다.."
+                        let alertAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+                        alert.addAction(alertAction)
+                        viewController.present(alert, animated: true, completion: nil)
+                        alert.modalPresentationStyle = .overFullScreen
+                        return
+                    } else if result.code == "A002" {
+                        let alert = UIAlertController()
+                        alert.title = "회원가입 실패"
+                        alert.message = "중복된 닉네임 입니다.."
+                        let alertAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+                        alert.addAction(alertAction)
+                        viewController.present(alert, animated: true, completion: nil)
+                        alert.modalPresentationStyle = .overFullScreen
+                        return
+                    }
+                default:
+                    print("데이터베이스 오류")
+                    let alert = UIAlertController()
+                    alert.title = "서버 오류"
+                    alert.message = "서버에서 오류가 발생했습니다. 잠시 후 다시 시도해주세요."
+                    let alertAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+                    alert.addAction(alertAction)
+                    viewController.present(alert, animated: true, completion: nil)
+                    return
+                }
             case .failure(let error):
                 print("회원가입 데이터 전송 실패")
                 print(error.localizedDescription)
