@@ -32,7 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            }
             self.window?.backgroundColor = .white
         }else {
-            moveLoginViewController()
+//            moveLoginViewController()
+            moveHomeViewController()
         }
         
         func moveHomeViewController(){

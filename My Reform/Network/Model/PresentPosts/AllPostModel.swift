@@ -7,13 +7,11 @@
 
 import Foundation
 
-struct SendAllPostModel: Decodable{
-    let shard : [AllPostModel]?
-}
 
-// 01.20 price와 imageURL 임의로 추가 - API명세서 확인 후 변경해야함 []
-struct AllPostModel : Decodable{
-    let key : AllViewKey
+// 01.21 price와 imageURL 임의로 추가 - API명세서 확인 후 변경해야함 []
+
+struct AllPostModel : Decodable {
+    let Key : AllViewKey
     let value : AllViewValue?
 }
 
@@ -39,11 +37,11 @@ struct AllViewValue : Decodable {
 }
 
 struct AllViewUser : Decodable {
-    let userid : String
+    let userId : Int
     let email : String
     let id : String
     let nickname : String
-    let intrudution : String
+    let introduction : String
 }
 
 struct AllViewImage : Decodable{

@@ -11,6 +11,7 @@ import Alamofire
 
 class HomeViewController: UIViewController {
     
+    // 데이터 모델이 추가될 때 마다 테이블 뷰 갱신
     var allPostModel: [AllPostModel] = []{
         didSet {
             self.homeFeedTable.reloadData()
@@ -35,14 +36,17 @@ class HomeViewController: UIViewController {
         homeFeedTable.delegate = self
         homeFeedTable.dataSource = self
         
-        
+        setupHomeFeedData()
         
         homeFeedTable.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             make.leading.trailing.bottom.equalToSuperview()
         }
         
+    }
     
+    private func setupHomeFeedData() {
+        AllPostDataManager().allPostGet(self)
     }
     
     
@@ -111,7 +115,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
         
         let data = allPostModel[indexPath.row]
-        // 01.20 테스트 [x] - 오류시 cell.의 값을 하나하나 지정
+//        print(data)
+        // 01.21 테스트 [x] - 오류시 cell.의 값을 하나하나 지정
         cell.configure(with: data)
         return cell
     }
