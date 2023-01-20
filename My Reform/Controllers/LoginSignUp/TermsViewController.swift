@@ -100,7 +100,7 @@ class TermsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-
+        
         setUIView()
         setUIConstraints()
         addTargets()
@@ -133,7 +133,7 @@ class TermsViewController: UIViewController {
         }
         
         checkBoxAll.snp.makeConstraints { make in
-            make.width.height.equalTo(30)
+            make.width.height.equalTo(35)
             make.top.equalTo(serviceLabel.snp.bottom).offset(30)
             make.leading.equalToSuperview().inset(30)
         }
@@ -153,7 +153,7 @@ class TermsViewController: UIViewController {
         }
         
         checkBox1.snp.makeConstraints { make in
-            make.width.height.equalTo(30)
+            make.width.height.equalTo(35)
             make.top.equalTo(sectionLine.snp.bottom).offset(30)
             make.leading.equalToSuperview().inset(30)
         }
@@ -165,7 +165,7 @@ class TermsViewController: UIViewController {
         }
         
         checkBox2.snp.makeConstraints { make in
-            make.width.height.equalTo(30)
+            make.width.height.equalTo(35)
             make.top.equalTo(checkBox1.snp.bottom).offset(30)
             make.leading.equalToSuperview().inset(30)
         }
@@ -184,7 +184,7 @@ class TermsViewController: UIViewController {
         }
         
         checkBox3.snp.makeConstraints { make in
-            make.width.height.equalTo(30)
+            make.width.height.equalTo(35)
             make.top.equalTo(checkBox2.snp.bottom).offset(30)
             make.leading.equalToSuperview().inset(30)
         }
@@ -203,7 +203,7 @@ class TermsViewController: UIViewController {
         }
         
         checkBox4.snp.makeConstraints { make in
-            make.width.height.equalTo(30)
+            make.width.height.equalTo(35)
             make.top.equalTo(checkBox3.snp.bottom).offset(30)
             make.leading.equalToSuperview().inset(30)
         }
