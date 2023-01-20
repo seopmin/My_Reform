@@ -8,7 +8,15 @@ import UIKit
 import SnapKit
 import Alamofire
 
+<<<<<<< HEAD
 class SignUpViewController: UIViewController{
+=======
+class SignUpViewController: UIViewController, UITextFieldDelegate {
+    
+    var marketingAllow: Bool = false
+    static var signUpNickname = ""
+    
+>>>>>>> ddcbab5c85b538f81b3fba143b94313b8893e56e
     lazy var name_label = { () -> UILabel in
         let label = UILabel()
         label.text = "닉네임"
@@ -147,14 +155,14 @@ class SignUpViewController: UIViewController{
     }()
     lazy var next_btn = { () -> UIButton in
         let btn = UIButton()
-        btn.backgroundColor = .systemPurple
+        btn.backgroundColor = UIColor.mainColor
         btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         btn.setTitle("다음", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.layer.cornerRadius = 8
         // 버튼 비활성화
-        btn.isEnabled = false
-        btn.backgroundColor = UIColor.systemPurple.withAlphaComponent(0.5)
+        btn.isEnabled = true
+//        btn.backgroundColor = UIColor.systemPurple.withAlphaComponent(0.5)
         return btn
     }()
     
@@ -335,6 +343,7 @@ extension SignUpViewController: UITextFieldDelegate {
         return true
     }
     
+<<<<<<< HEAD
     @objc func btn_check(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if (name_input.text!.count<=10 && name_input.text!.count>0 && id_input.text!.count<=12 && id_input.text!.count>=6 && email_input.text!.count>0 && password_input.text!.count>0 && password_check_input.text!.count>0 && password_input.text == password_check_input.text) {
             self.next_btn.isEnabled = true
@@ -342,14 +351,27 @@ extension SignUpViewController: UITextFieldDelegate {
         } else {
             self.next_btn.isEnabled = false
             next_btn.backgroundColor = UIColor.systemPurple.withAlphaComponent(0.5)
+=======
+    @objc func checkFunc() {
+        if (name_input.text!.count<=10 && name_input.text!.count>0 && id_input.text!.count>=12 && id_input.text!.count>=6 && email_input.text!.count>0 && password_input.text!.count>0 && password_check_input.text!.count>0) {
+//            next_btn.isEnabled = true
+//            next_btn.backgroundColor = UIColor.systemPurple.withAlphaComponent(1)
+        } else {
+//            next_btn.isEnabled = false
+//            next_btn.backgroundColor = UIColor.systemPurple.withAlphaComponent(0.5)
+>>>>>>> ddcbab5c85b538f81b3fba143b94313b8893e56e
         }
         return true
     }
     
     //다음 버튼 눌렀을 시
     @objc func nextFunc() {
-        let userData = SignUpInput(id: id_input.text ?? "", email: email_input.text ?? "", nickname: name_input.text ?? "", pw: password_input.text ?? "", marketing: TermsViewController.termAllow)
+        print("회원가입 버튼 누름")
+        
+        let userData = SignUpInput(id: id_input.text ?? "", email: email_input.text ?? "", nickname: name_input.text ?? "", pw: password_input.text ?? "", marketing: marketingAllow)
         SignUpDataManager.posts(self, userData)
+        
+        SignUpViewController.signUpNickname = name_input.text ?? ""
     }
     
   @objc private func textDidChange(_ notification: Notification) {

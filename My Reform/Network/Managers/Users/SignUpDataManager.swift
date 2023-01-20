@@ -41,7 +41,7 @@ class SignUpDataManager {
     
     // 서버에 회원가입 값 전송
     static func posts(_ viewController: SignUpViewController, _ parameter: SignUpInput){
-        AF.request("http://211.176.69.65:8080/users/new-user", method: .post, parameters: parameter, encoder: JSONParameterEncoder.default, headers: Headers).validate(statusCode: 200..<500).responseDecodable(of: SignUpModel.self) { response in
+        AF.request("http://175.210.229.95:9721/users/new-user", method: .post, parameters: parameter, encoder: JSONParameterEncoder.default, headers: Headers).validate(statusCode: 200..<500).responseDecodable(of: SignUpModel.self) { response in
             switch response.result {
             case .success(let result):
                 print("회원가입 데이터 전송 성공")
