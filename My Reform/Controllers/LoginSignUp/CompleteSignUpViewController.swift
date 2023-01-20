@@ -11,11 +11,17 @@ class CompleteSignUpViewController: UIViewController {
     
     lazy var welcomeLabel = { () ->UILabel in
         let label = UILabel()
-        label.text = "환영해요, 마이리폼 님"
+        label.text = "환영해요,"
         label.font = UIFont.boldSystemFont(ofSize: 25)
         return label
     }()
     
+    lazy var nicknameLabel = { () ->UILabel in
+        let label = UILabel()
+        label.text = "\(SignUpViewController.signUpNickname) 님"
+        label.font = UIFont.boldSystemFont(ofSize: 25)
+        return label
+    }()
     
     lazy var explainLabel = { () -> UILabel in
         let label = UILabel()
@@ -62,6 +68,7 @@ class CompleteSignUpViewController: UIViewController {
     
     private func setUIView() {
         self.view.addSubview(welcomeLabel)
+        self.view.addSubview(nicknameLabel)
         self.view.addSubview(explainLabel)
         self.view.addSubview(explainLabel2)
         self.view.addSubview(goButton)
@@ -74,6 +81,12 @@ class CompleteSignUpViewController: UIViewController {
             (make) in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(70)
             make.leading.equalTo(30)
+        }
+        
+        nicknameLabel.snp.makeConstraints{
+            (make) in
+            make.top.equalTo(welcomeLabel.snp.top)
+            make.leading.equalTo(welcomeLabel.snp.trailing).inset(-5)
         }
         
         explainLabel.snp.makeConstraints{

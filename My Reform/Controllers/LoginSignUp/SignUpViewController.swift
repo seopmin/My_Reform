@@ -9,6 +9,9 @@ import SnapKit
 import Alamofire
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
+    
+    static var signUpNickname = ""
+    
     lazy var name_label = { () -> UILabel in
         let label = UILabel()
         label.text = "닉네임"
@@ -347,6 +350,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @objc func nextFunc() {
         let userData = SignUpInput(id: id_input.text ?? "", email: email_input.text ?? "", nickname: name_input.text ?? "", pw: password_input.text ?? "", marketing: TermsViewController.termAllow)
         SignUpDataManager.posts(self, userData)
+        
+        SignUpViewController.signUpNickname = name_input.text ?? ""
     }
     
   @objc private func textDidChange(_ notification: Notification) {
