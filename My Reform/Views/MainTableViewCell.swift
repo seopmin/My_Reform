@@ -99,9 +99,9 @@ class MainTableViewCell: UITableViewCell {
         // API 명세서 이미지 URL과 price 값 전달받으면 설정 []
         guard let url = URL(string: model.value?.image?.imageURL ?? "") else { return }
         titleCellImageView.sd_setImage(with: url, completed: nil)
-        titleCellLabel.text = model.key.title
-        minuteCellLabel.text = model.key.updateAt
-        priceCellLabel.text = String(model.key.price)
+        titleCellLabel.text = model.Key.title
+        minuteCellLabel.text = model.Key.updateAt
+        priceCellLabel.text = String(model.Key.price)
         
     }
     

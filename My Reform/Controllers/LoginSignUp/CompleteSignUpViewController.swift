@@ -9,6 +9,8 @@ import SnapKit
 import Then
 class CompleteSignUpViewController: UIViewController {
     
+    var nickname: String = ""
+    
     lazy var welcomeLabel = { () ->UILabel in
         let label = UILabel()
         label.text = "환영해요,"
@@ -18,7 +20,7 @@ class CompleteSignUpViewController: UIViewController {
     
     lazy var nicknameLabel = { () ->UILabel in
         let label = UILabel()
-        label.text = "\(SignUpViewController.signUpNickname) 님"
+        label.text = "닉네임 님"
         label.font = UIFont.boldSystemFont(ofSize: 25)
         return label
     }()
@@ -55,6 +57,7 @@ class CompleteSignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .systemBackground
         
         setUIView()
         setUIConstraints()
@@ -79,7 +82,7 @@ class CompleteSignUpViewController: UIViewController {
         
         welcomeLabel.snp.makeConstraints{
             (make) in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(70)
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(35)
             make.leading.equalTo(30)
         }
         

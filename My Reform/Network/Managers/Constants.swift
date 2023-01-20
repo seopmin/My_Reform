@@ -9,8 +9,8 @@
 import Foundation
 
 struct Constants {
-    //    static let API_KEY = //서버에서 가져온 값 추가 []
-    //    static let baseURL = //서버에서 가져온 값 추가 []
+        static let API_KEY = "" //서버에서 가져온 값 추가 []
+        static let baseURL = "http://175.210.229.95:9721"
     
     
     
