@@ -9,8 +9,24 @@ import SnapKit
 import Then
 import Alamofire
 
-class SignUpViewController: UIViewController{
-
+class SignUpViewController: UIViewController, UITextFieldDelegate {
+    
+    var nickname : String = ""
+    var id : String = ""
+    var email: String = ""
+    var pw : String = ""
+    var pwCheck : String = ""
+    var marketingAllow: Bool! // TermsViewController 에서 넘겨받음
+    
+//MARK: - Instance
+    private let mainview = UIScrollView().then {
+        $0.backgroundColor = .white
+        $0.showsVerticalScrollIndicator = true
+        $0.isScrollEnabled = true
+        $0.indicatorStyle = .black
+        $0.scrollIndicatorInsets = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: -3)
+    }
+    
     lazy var name_label = { () -> UILabel in
         let label = UILabel()
         label.text = "닉네임"
@@ -195,33 +211,12 @@ class SignUpViewController: UIViewController{
 //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.name_input.delegate = self
-        self.id_input.delegate = self
-        self.email_input.delegate = self
-        self.password_input.delegate = self
-        self.password_check_input.delegate = self
-        
-
         self.view.backgroundColor = .systemBackground
         
         initializeSet()
         setAddTarget()
         setUIView()
         setUIConstraints()
-<<<<<<< HEAD
-        
-        
-        
-        name_input.addTarget(self, action: #selector(textField), for: .editingChanged)
-        id_input.addTarget(self, action: #selector(textField2), for: .editingChanged)
-        name_input.addTarget(self, action: #selector(btn_check), for: .editingChanged)
-        id_input.addTarget(self, action: #selector(btn_check), for: .editingChanged)
-        email_input.addTarget(self, action: #selector(btn_check), for: .editingChanged)
-        password_input.addTarget(self, action: #selector(btn_check), for: .editingChanged)
-        password_check_input.addTarget(self, action: #selector(btn_check), for: .editingChanged)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)),name: UITextField.textDidChangeNotification, object: name_input)
-        next_btn.addTarget(self, action: #selector(nextFunc), for: .touchDown)
 
     }
     
@@ -341,7 +336,7 @@ class SignUpViewController: UIViewController{
     
     func setAddTarget() {
         name_input.addTarget(self, action: #selector(nicknameTextFieldCount), for: .editingChanged)
-        id_input.addTarget(self, action: #selector(idTextFieldCount), for: .editingChanged)
+        id_input.addTarget(self, action: #selector(textField), for: .editingChanged)
         next_btn.addTarget(self, action: #selector(nextFunc), for: .touchUpInside)
         
 //        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)),name: UITextField.textDidChangeNotification, object: name_input)
@@ -478,13 +473,10 @@ class SignUpViewController: UIViewController{
         }
         
     }
-
-}
-
-
-extension SignUpViewController: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-
+    
+    
+    //MARK: - 닉네임 아이디 변할 때
+    @objc func nicknameTextFieldCount(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if (name_input.text!.count > 10) {
           return false
         } else if (name_input.text!.count == 10) {
@@ -501,7 +493,7 @@ extension SignUpViewController: UITextFieldDelegate {
         
     }
     
-    @objc func idTextFieldCount(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    @objc func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if (id_input.text!.count > 12) {
           return false
         } else if (id_input.text!.count == 12) {
@@ -517,13 +509,7 @@ extension SignUpViewController: UITextFieldDelegate {
         return true
     }
     
-
-
-
-        }
-        return true
-    }
-
+    
     
     // MARK: - 다음 버튼 눌렀을 시
     @objc func nextFunc() {
@@ -553,7 +539,6 @@ extension SignUpViewController: UITextFieldDelegate {
       }
     }
 }
-
 
 #if DEBUG
 import SwiftUI
