@@ -41,6 +41,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }()
     lazy var name_input = { () -> UITextField in
         let text = UITextField()
+        text.addLeftPadding()
         text.placeholder = " 닉네임을 입력해주세요"
         text.font = UIFont.systemFont(ofSize: 20)
         text.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
@@ -78,6 +79,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }()
     lazy var id_input = { () -> UITextField in
         let text = UITextField()
+        text.addLeftPadding()
         text.placeholder = " 아이디를 입력해주세요"
         text.font = UIFont.systemFont(ofSize: 20)
         text.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
@@ -115,6 +117,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     lazy var email_input = { () -> UITextField in
         let text = UITextField()
         text.placeholder = " 이메일을 입력해주세요"
+        text.addLeftPadding()
 //        text.keyboardType(.emailAddress).autocapitalization(.none)
         text.font = UIFont.systemFont(ofSize: 20)
         text.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
@@ -136,6 +139,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }()
     lazy var password_input = { () -> UITextField in
         let text = UITextField()
+        text.addLeftPadding()
         text.placeholder = " 비밀번호를 입력해주세요"
         text.font = UIFont.systemFont(ofSize: 20)
         text.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
@@ -159,6 +163,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }()
     lazy var password_check_input = { () -> UITextField in
         let text = UITextField()
+        text.addLeftPadding()
         text.placeholder = " 비밀번호를 다시 한 번 입력해주세요"
         text.font = UIFont.systemFont(ofSize: 20)
         text.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
@@ -336,7 +341,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     func setAddTarget() {
         name_input.addTarget(self, action: #selector(nicknameTextFieldCount), for: .editingChanged)
-        id_input.addTarget(self, action: #selector(idTextFieldCount), for: .editingChanged)
+        id_input.addTarget(self, action: #selector(textField), for: .editingChanged)
         next_btn.addTarget(self, action: #selector(nextFunc), for: .touchUpInside)
         
 //        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)),name: UITextField.textDidChangeNotification, object: name_input)
@@ -493,7 +498,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    @objc func idTextFieldCount(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    @objc func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if (id_input.text!.count > 12) {
           return false
         } else if (id_input.text!.count == 12) {
@@ -540,4 +545,27 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
+
+
+#if DEBUG
+import SwiftUI
+struct SignUpViewControllerRepresentable: UIViewControllerRepresentable {
+  func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+  }
+  @available(iOS 13.0.0, *)
+  func makeUIViewController(context: Context) -> some UIViewController {
+    SignUpViewController()
+  }
+}
+@available(iOS 13.0, *)
+struct SignUpViewControllerRepresentable_PreviewProvider: PreviewProvider {
+  static var previews: some View {
+    Group {
+      SignUpViewControllerRepresentable()
+        .ignoresSafeArea()
+        .previewDisplayName("Preview")
+        .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
+    }
+  }
+} #endif
 
