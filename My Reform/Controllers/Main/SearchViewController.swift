@@ -9,13 +9,15 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
-    private let searchController = UISearchController()
+    private let searchController = UISearchController(searchResultsController: nil)
     private let refreshControl = UIRefreshControl()
     private let collectionViewLayout = UICollectionViewFlowLayout()
     private lazy var exploreCollectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+//        searchController.delegate = self
         attribute()
         layout()
         
@@ -65,9 +67,12 @@ extension SearchViewController {
         
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.placeholder = "검색"
-        navigationItem.titleView
-        = searchController.searchBar
-        
+        searchController.searchResultsUpdater = self
+        navigationItem.titleView = searchController.searchBar
+//        searchController.searchBar.searchTextField.addTarget(self, action: #selector(updateSearchResults), for: .touchDragEnter)
+        //-----
+//        navigationItem.searchController = searchController
+        //---
         refreshControl.addTarget(self, action: #selector(beginRefresh(_:)), for: .valueChanged)
         exploreCollectionView.refreshControl = refreshControl
         
@@ -81,6 +86,22 @@ extension SearchViewController {
             $0.edges.equalToSuperview()
         }
     }
+}
+
+extension SearchViewController : UISearchResultsUpdating {
+
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else{return}
+        print(text)
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchController) {
+        print(1)
+        searchBar.resignFirstResponder()
+        guard let text = searchController.searchBar.text?.lowercased() else { return }
+        print(text)
+    }
+    
+    
 }
 
 #if DEBUG
