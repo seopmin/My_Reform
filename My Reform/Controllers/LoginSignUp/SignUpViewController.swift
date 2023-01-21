@@ -41,6 +41,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }()
     lazy var name_input = { () -> UITextField in
         let text = UITextField()
+        text.addLeftPadding()
         text.placeholder = " 닉네임을 입력해주세요"
         text.font = UIFont.systemFont(ofSize: 20)
         text.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
@@ -78,6 +79,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }()
     lazy var id_input = { () -> UITextField in
         let text = UITextField()
+        text.addLeftPadding()
         text.placeholder = " 아이디를 입력해주세요"
         text.font = UIFont.systemFont(ofSize: 20)
         text.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
@@ -115,6 +117,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     lazy var email_input = { () -> UITextField in
         let text = UITextField()
         text.placeholder = " 이메일을 입력해주세요"
+        text.addLeftPadding()
 //        text.keyboardType(.emailAddress).autocapitalization(.none)
         text.font = UIFont.systemFont(ofSize: 20)
         text.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
@@ -136,6 +139,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }()
     lazy var password_input = { () -> UITextField in
         let text = UITextField()
+        text.addLeftPadding()
         text.placeholder = " 비밀번호를 입력해주세요"
         text.font = UIFont.systemFont(ofSize: 20)
         text.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
@@ -159,6 +163,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }()
     lazy var password_check_input = { () -> UITextField in
         let text = UITextField()
+        text.addLeftPadding()
         text.placeholder = " 비밀번호를 다시 한 번 입력해주세요"
         text.font = UIFont.systemFont(ofSize: 20)
         text.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
@@ -539,6 +544,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
       }
     }
 }
+
+
 
 #if DEBUG
 import SwiftUI
