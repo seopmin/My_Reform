@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, UISearchBarDelegate {
     
     private let searchController = UISearchController(searchResultsController: nil)
     private let refreshControl = UIRefreshControl()
@@ -17,7 +17,7 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        searchController.delegate = self
+        
         attribute()
         layout()
         
@@ -53,6 +53,7 @@ extension SearchViewController: UICollectionViewDataSource {
 }
 
 extension SearchViewController {
+    // 새로고침
     @objc func beginRefresh(_ sender: UIRefreshControl) {
         print("beginRefresh!")
         sender.endRefreshing()
@@ -69,16 +70,18 @@ extension SearchViewController {
         searchController.searchBar.placeholder = "검색"
         searchController.searchResultsUpdater = self
         navigationItem.titleView = searchController.searchBar
-//        searchController.searchBar.searchTextField.addTarget(self, action: #selector(updateSearchResults), for: .touchDragEnter)
-        //-----
-//        navigationItem.searchController = searchController
-        //---
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.delegate = self
+        
+
         refreshControl.addTarget(self, action: #selector(beginRefresh(_:)), for: .valueChanged)
         exploreCollectionView.refreshControl = refreshControl
         
         exploreCollectionView.dataSource = self
         exploreCollectionView.delegate = self
         exploreCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "SearchCollectionViewCell")
+        
+        
     }
     func layout() {
         view.addSubview(exploreCollectionView)
@@ -88,21 +91,22 @@ extension SearchViewController {
     }
 }
 
-extension SearchViewController : UISearchResultsUpdating {
+extension SearchViewController : UISearchResultsUpdating, UISearchControllerDelegate  {
 
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else{return}
         print(text)
     }
-    func searchBarSearchButtonClicked(_ searchBar: UISearchController) {
-        print(1)
+
+    // when clicked searchButton in keyboard
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         guard let text = searchController.searchBar.text?.lowercased() else { return }
-        print(text)
+        print("search result : ", text)
     }
-    
-    
 }
+
+
 
 #if DEBUG
 import SwiftUI
