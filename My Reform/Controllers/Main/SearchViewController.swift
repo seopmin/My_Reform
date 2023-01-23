@@ -20,12 +20,7 @@ class SearchViewController: UIViewController,  UISearchBarDelegate, UIGestureRec
         
         attribute()
         layout()
-        
-        
     }
-    
-
-
 }
 
 extension SearchViewController : UICollectionViewDelegateFlowLayout {
