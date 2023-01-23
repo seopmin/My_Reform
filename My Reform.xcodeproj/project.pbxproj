@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		370D8BB8296FCF7F00E4B65E /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370D8BB7296FCF7F00E4B65E /* CategoryViewController.swift */; };
 		370D8BC0296FE0A000E4B65E /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370D8BBF296FE0A000E4B65E /* CategoryCell.swift */; };
+		373C5623297E7DEC00F00F1F /* SearchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373C5622297E7DEC00F00F1F /* SearchListViewController.swift */; };
 		4752663C29730A55008D5F1D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4752663B29730A55008D5F1D /* Constants.swift */; };
 		4752663E29730AA6008D5F1D /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4752663D29730AA6008D5F1D /* MainTableViewCell.swift */; };
 		4752664029730CD3008D5F1D /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4752663F29730CD3008D5F1D /* UploadViewController.swift */; };
@@ -48,6 +49,7 @@
 		34B507B16C947CBB18B3A995 /* Pods_My_Reform.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My_Reform.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		370D8BB7296FCF7F00E4B65E /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		370D8BBF296FE0A000E4B65E /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		373C5622297E7DEC00F00F1F /* SearchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewController.swift; sourceTree = "<group>"; };
 		47526619296C7B52008D5F1D /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		4752663B29730A55008D5F1D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4752663D29730AA6008D5F1D /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				47C9C2E429781CA600DF89D8 /* LoginSignUp */,
 				47FB5502296BD2A000B3029C /* Main */,
 				370D8BB7296FCF7F00E4B65E /* CategoryViewController.swift */,
+				373C5622297E7DEC00F00F1F /* SearchListViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				370D8BC0296FE0A000E4B65E /* CategoryCell.swift in Sources */,
 				47FB54D12968590000B3029C /* AppDelegate.swift in Sources */,
 				47FB54EA29685EA400B3029C /* MessageViewController.swift in Sources */,
+				373C5623297E7DEC00F00F1F /* SearchListViewController.swift in Sources */,
 				47C9C2E829781D3000DF89D8 /* UserPrivacyAllowViewController.swift in Sources */,
 				4752665329751999008D5F1D /* LoginModel.swift in Sources */,
 				4752664C2975177D008D5F1D /* SignUpInput.swift in Sources */,
