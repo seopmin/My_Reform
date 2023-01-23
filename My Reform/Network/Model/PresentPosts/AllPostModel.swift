@@ -19,7 +19,7 @@ struct AllPostModel : Decodable {
 
 struct AllPostData : Decodable {
     let Key : AllViewKey?
-    let value : AllViewValue?
+    let value : [AllViewValue]?
 }
 
 struct AllViewKey : Decodable{
