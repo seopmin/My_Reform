@@ -10,8 +10,13 @@ import SnapKit
 import Then
 import SDWebImage
 
+
+
 class MainTableViewCell: UITableViewCell {
 
+    var allPostModel: AllPostModel!
+
+    
     static let identifier = "MainTableViewCell"
     
     
@@ -91,18 +96,19 @@ class MainTableViewCell: UITableViewCell {
 //        }
         
     }
+
     
     
-    //Model 에서 전달받은 값들 셀에 사진 URL값과 포스터
-    public func configure(with model: AllPostModel) {
-        
-        // API 명세서 이미지 URL과 price 값 전달받으면 설정 []
-        guard let url = URL(string: model.value?.image?.imageURL ?? "") else { return }
-        titleCellImageView.sd_setImage(with: url, completed: nil)
-        titleCellLabel.text = model.Key.title
-        minuteCellLabel.text = model.Key.updateAt
-        priceCellLabel.text = String(model.Key.price)
-        
-    }
+        //ViewModel 에서 포스터 URL값과 포스터 이름을 불러옴
+        public func configure(with model: AllPostModel) {
+//            guard let url = URL(string: (model.value?[0].image?.imageURL)!) else { return }
+//            guard let url = model.data.어쩌구URL else { return }
+            
+//            titleCellImageView.sd_setImage(with: url, completed: nil)
+//            titleCellLabel.text = model.title
+//            minuteCellLabel.text = String("\(model.minute)")
+//            priceCellLabel.text = model.price
+            
+        }
     
 }

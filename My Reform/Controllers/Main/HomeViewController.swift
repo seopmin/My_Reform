@@ -8,6 +8,12 @@
 import UIKit
 import SnapKit
 import Alamofire
+import SDWebImage
+
+//셀을 클릭했을 때 넘어어가서 다음 데이터를 불러올 모델 프로토콜
+protocol MainTableViewCellDelegate : AnyObject {
+    func MainTableViewCellDidTapCell(_ cell: MainTableViewCell, model: AllPostModel) //모델을 다음 데이터에서 불러올 모델로 변경해줘야함
+}
 
 class HomeViewController: UIViewController {
     
@@ -17,6 +23,8 @@ class HomeViewController: UIViewController {
             self.homeFeedTable.reloadData()
         }
     }
+    
+    weak var delegate : MainTableViewCellDelegate?
 
     private let homeFeedTable: UITableView = {
         
@@ -29,6 +37,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavbar()
+        
         
         view.backgroundColor = .white
         view.addSubview(homeFeedTable)
@@ -81,7 +90,7 @@ class HomeViewController: UIViewController {
     //상단 네비게이션바
     func configureNavbar() {
         
-        var image = UIImage(named: "myReform_logo")?.resize(newWidth: 150)
+        var image = UIImage(named: "logotype")?.resize(newWidth: 150)
         image = image?.withRenderingMode(.alwaysOriginal) //색깔 원래대로
         let imageBtn = UIBarButtonItem(image: image, style: .done, target: self, action: nil)
         let categoryBtn = UIBarButtonItem(image: UIImage(named: "category")?.resize(newWidth: 25), style: .done, target: self, action: #selector(categoryBtnClicked))
@@ -95,9 +104,10 @@ class HomeViewController: UIViewController {
     }
     
     // AllPostDataManager 에서 데이터를 불러오는데 성공하면 실행되는 함수
-    func successAllPostModel(result: [AllPostModel]) {
+    func successAllPostModel(result: AllPostModel) {
         // 불러온 값을 위에 전역변수로 저장
-        allPostModel = result
+        allPostModel = [result]
+        
     }
     
 }
@@ -115,14 +125,22 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
         
         let data = allPostModel[indexPath.row]
-//        print(data)
-        // 01.21 테스트 [x] - 오류시 cell.의 값을 하나하나 지정
-        cell.configure(with: data)
+//        guard let model = data.data[indexPath.row] else { return UITableViewCell() } //현재 model 은 옵셔널 스트링 값
+//        cell.configure(with: HomeFeedViewModel(image: <#T##UIImage#>, title: <#T##String#>, minute: <#T##Int#>, price: <#T##String#>))
+        
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //데이터 매니저에서 세부데이터를 불러오는 함수를 불러와 실행 - 모델도 변경해주어야함
+//        delegate?.MainTableViewCellDidTapCell(self, model: AllPostModel)
+        
     }
     
     //상단 네비게이션바가  스크롤하면 같이 올라가게 만듬

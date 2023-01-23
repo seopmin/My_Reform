@@ -21,6 +21,10 @@
 		4752665329751999008D5F1D /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4752665229751999008D5F1D /* LoginModel.swift */; };
 		47526655297529AE008D5F1D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47526654297529AE008D5F1D /* SignUpViewController.swift */; };
 		4770C649297AD686009E3E58 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4770C648297AD686009E3E58 /* String.swift */; };
+		4770C655297EC9E4009E3E58 /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4770C654297EC9E4009E3E58 /* DetailCollectionViewCell.swift */; };
+		4770C657297ECA34009E3E58 /* DetailPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4770C656297ECA34009E3E58 /* DetailPostTableViewCell.swift */; };
+		4770C659297ECAB4009E3E58 /* HomeFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4770C658297ECAB4009E3E58 /* HomeFeedViewModel.swift */; };
+		4770C65B297ECB11009E3E58 /* DetailPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4770C65A297ECB11009E3E58 /* DetailPostViewController.swift */; };
 		47C9C2E329769DE500DF89D8 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C9C2E229769DE500DF89D8 /* UITextField.swift */; };
 		47C9C2E629781D1A00DF89D8 /* UserServiceAllowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C9C2E529781D1A00DF89D8 /* UserServiceAllowViewController.swift */; };
 		47C9C2E829781D3000DF89D8 /* UserPrivacyAllowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C9C2E729781D3000DF89D8 /* UserPrivacyAllowViewController.swift */; };
@@ -62,6 +66,10 @@
 		4752665229751999008D5F1D /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		47526654297529AE008D5F1D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		4770C648297AD686009E3E58 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		4770C654297EC9E4009E3E58 /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		4770C656297ECA34009E3E58 /* DetailPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostTableViewCell.swift; sourceTree = "<group>"; };
+		4770C658297ECAB4009E3E58 /* HomeFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedViewModel.swift; sourceTree = "<group>"; };
+		4770C65A297ECB11009E3E58 /* DetailPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewController.swift; sourceTree = "<group>"; };
 		47C9C2E229769DE500DF89D8 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		47C9C2E529781D1A00DF89D8 /* UserServiceAllowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceAllowViewController.swift; sourceTree = "<group>"; };
 		47C9C2E729781D3000DF89D8 /* UserPrivacyAllowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrivacyAllowViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +110,7 @@
 		47526634297309AD008D5F1D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4770C658297ECAB4009E3E58 /* HomeFeedViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -254,6 +263,7 @@
 				47FB5502296BD2A000B3029C /* Main */,
 				370D8BB7296FCF7F00E4B65E /* CategoryViewController.swift */,
 				373C5622297E7DEC00F00F1F /* SearchListViewController.swift */,
+				4770C65A297ECB11009E3E58 /* DetailPostViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -297,6 +307,8 @@
 			children = (
 				370D8BBF296FE0A000E4B65E /* CategoryCell.swift */,
 				4752663D29730AA6008D5F1D /* MainTableViewCell.swift */,
+				4770C656297ECA34009E3E58 /* DetailPostTableViewCell.swift */,
+				4770C654297EC9E4009E3E58 /* DetailCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -448,12 +460,14 @@
 				47FB54E829685E9000B3029C /* SearchViewController.swift in Sources */,
 				4752664E2975179A008D5F1D /* SignUpModel.swift in Sources */,
 				4770C649297AD686009E3E58 /* String.swift in Sources */,
+				4770C65B297ECB11009E3E58 /* DetailPostViewController.swift in Sources */,
 				47C9C2F02979644600DF89D8 /* AllPostDataManager.swift in Sources */,
 				47FB54D52968590000B3029C /* MainTabBarViewController.swift in Sources */,
 				370D8BC0296FE0A000E4B65E /* CategoryCell.swift in Sources */,
 				47FB54D12968590000B3029C /* AppDelegate.swift in Sources */,
 				47FB54EA29685EA400B3029C /* MessageViewController.swift in Sources */,
 				373C5623297E7DEC00F00F1F /* SearchListViewController.swift in Sources */,
+				4770C655297EC9E4009E3E58 /* DetailCollectionViewCell.swift in Sources */,
 				47C9C2E829781D3000DF89D8 /* UserPrivacyAllowViewController.swift in Sources */,
 				4752665329751999008D5F1D /* LoginModel.swift in Sources */,
 				4752664C2975177D008D5F1D /* SignUpInput.swift in Sources */,
@@ -472,7 +486,9 @@
 				47C9C2E629781D1A00DF89D8 /* UserServiceAllowViewController.swift in Sources */,
 				47C9C2E329769DE500DF89D8 /* UITextField.swift in Sources */,
 				47FB54F729686A2300B3029C /* UIColor.swift in Sources */,
+				4770C657297ECA34009E3E58 /* DetailPostTableViewCell.swift in Sources */,
 				47C9C2F3297964F700DF89D8 /* AddPostModel.swift in Sources */,
+				4770C659297ECAB4009E3E58 /* HomeFeedViewModel.swift in Sources */,
 				47C9C2F929796F0B00DF89D8 /* AllPostModel.swift in Sources */,
 				47526655297529AE008D5F1D /* SignUpViewController.swift in Sources */,
 			);
