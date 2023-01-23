@@ -8,9 +8,9 @@
 import UIKit
 import SnapKit
 import Then
-import KakaoSDKCommon
-import KakaoSDKAuth
-import KakaoSDKUser
+//import KakaoSDKCommon
+//import KakaoSDKAuth
+//import KakaoSDKUser
 
 class LoginViewController: UIViewController {
     
@@ -32,6 +32,7 @@ class LoginViewController: UIViewController {
     }
     
     private let idTextfield = UITextField().then {
+        $0.addLeftPadding()
         $0.placeholder = "아이디를 입력해주세요."
         $0.font = UIFont.systemFont(ofSize: 20)
         $0.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
@@ -45,6 +46,7 @@ class LoginViewController: UIViewController {
     }
     
     private let passwordTextfield = UITextField().then {
+        $0.addLeftPadding()
         $0.placeholder = "비밀번호를 입력해주세요."
         $0.font = UIFont.systemFont(ofSize: 20)
         $0.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
@@ -75,7 +77,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
+        navigationController?.navigationBar.tintColor = .black
         
         setUIView()
         setUIConstraints()
