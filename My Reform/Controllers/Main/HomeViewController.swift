@@ -17,8 +17,9 @@ protocol MainTableViewCellDelegate : AnyObject {
 
 class HomeViewController: UIViewController {
     
-    // 데이터 모델이 추가될 때 마다 테이블 뷰 갱신
-    var allPostModel: [AllPostModel] = []{
+    
+//     데이터 모델이 추가될 때 마다 테이블 뷰 갱신
+    var allPostModel: [AllPostData] = []{
         didSet {
             self.homeFeedTable.reloadData()
         }
@@ -45,7 +46,6 @@ class HomeViewController: UIViewController {
         homeFeedTable.delegate = self
         homeFeedTable.dataSource = self
         
-        setupHomeFeedData()
         
         homeFeedTable.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
@@ -54,9 +54,10 @@ class HomeViewController: UIViewController {
         
     }
     
-    private func setupHomeFeedData() {
+    override func viewWillAppear(_ animated: Bool) {
         AllPostDataManager().allPostGet(self)
     }
+        
     
     
     @objc func categoryBtnClicked() {
@@ -69,6 +70,9 @@ class HomeViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    @objc func logoClicked() {
+        self.homeFeedTable.reloadData()
+    }
     
     
     // 데이터 새로고침
@@ -92,7 +96,7 @@ class HomeViewController: UIViewController {
         
         var image = UIImage(named: "logotype")?.resize(newWidth: 150)
         image = image?.withRenderingMode(.alwaysOriginal) //색깔 원래대로
-        let imageBtn = UIBarButtonItem(image: image, style: .done, target: self, action: nil)
+        let imageBtn = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(logoClicked))
         let categoryBtn = UIBarButtonItem(image: UIImage(named: "category")?.resize(newWidth: 25), style: .done, target: self, action: #selector(categoryBtnClicked))
         let uploadBtn = UIBarButtonItem(image: UIImage(named: "upload")?.resize(newWidth: 25), style: .done, target: self, action: #selector(uploadBtnClicked))
             
@@ -104,9 +108,10 @@ class HomeViewController: UIViewController {
     }
     
     // AllPostDataManager 에서 데이터를 불러오는데 성공하면 실행되는 함수
-    func successAllPostModel(result: AllPostModel) {
+    func successAllPostModel(result: [AllPostData]) {
         // 불러온 값을 위에 전역변수로 저장
-        allPostModel = [result]
+        self.allPostModel = result
+        print(allPostModel.count)
         
     }
     
@@ -124,9 +129,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
         
-        let data = allPostModel[indexPath.row]
-//        guard let model = data.data[indexPath.row] else { return UITableViewCell() } //현재 model 은 옵셔널 스트링 값
-//        cell.configure(with: HomeFeedViewModel(image: <#T##UIImage#>, title: <#T##String#>, minute: <#T##Int#>, price: <#T##String#>))
+        let model = allPostModel[indexPath.row]
+//        guard let model = allPostModel[indexPath.row] else { return UITableViewCell() } //현재 model 은 옵셔널 스트링 값
+        guard let price = model.price else { return UITableViewCell()}
+//        cell.titleCellImageView =
+        cell.configure(with: HomeFeedViewModel(imageUrl: model.imageUrl ?? "", title: model.title ?? "", minute: model.updateAt ?? "", price: price))
         
         
         return cell
@@ -139,7 +146,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         //데이터 매니저에서 세부데이터를 불러오는 함수를 불러와 실행 - 모델도 변경해주어야함
-//        delegate?.MainTableViewCellDidTapCell(self, model: AllPostModel)
+        print("cell indexPath = \(indexPath)")
+//        delegate?.MainTableViewCellDidTapCell(self, model: allPostModel)
         
     }
     

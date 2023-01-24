@@ -17,14 +17,17 @@ class DetailPostViewController: UIViewController {
     // 0123 게시물의 상세정보 불러오는 모델로 변경해야함
     var detailPostModel : AllPostModel!
 
-    private let imageTableView: UITableView = {
-        
-        let table = UITableView(frame: .zero, style: .grouped)
-        //Views 에있는 CollectionViewTabelCell 호출
-        table.register(DetailPostCollectionViewCell.self, forCellReuseIdentifier: DetailPostCollectionViewCell.identifier)
-        return table
-    }()
+//    private let imageTableView: UITableView = {
+//
+//        let table = UITableView(frame: .zero, style: .grouped)
+//        //Views 에있는 CollectionViewTabelCell 호출
+//        table.register(DetailPostCollectionViewCell.self, forCellReuseIdentifier: DetailPostCollectionViewCell.identifier)
+//        return table
+//    }()
     
+//    private let imageScrollView = UIScrollView().then {
+//        $0.
+//    }
     
     
     override func viewDidLoad() {
@@ -34,8 +37,8 @@ class DetailPostViewController: UIViewController {
         setUIConstraints()
         setupDetailPostData()
         
-        imageTableView.delegate = self
-        imageTableView.dataSource = self
+//        imageTableView.delegate = self
+//        imageTableView.dataSource = self
     }
     
     // 서버와의 연동으로 데이터 매니저에서 정보가져오는 매니저를 만들어야함 []
@@ -44,38 +47,41 @@ class DetailPostViewController: UIViewController {
     }
 
     private func setUIView() {
-        view.addSubview(imageTableView)
+//        view.addSubview(imageTableView)
     }
     
     private func setUIConstraints() {
-        imageTableView.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-            make.height.equalTo(500)
-            make.width.equalToSuperview()
-        }
+//        imageTableView.snp.makeConstraints { make in
+//            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+//            make.height.equalTo(500)
+//            make.width.equalToSuperview()
+//        }
+        
     }
     
     
 }
 
-extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
-    }
+
+
+//extension DetailPostViewController: UITableViewDelegate, UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        1
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailPostCollectionViewCell.identifier, for: indexPath) as? DetailPostCollectionViewCell else { return UITableViewCell() }
+//
+//        // cell 에서 configure로 컬렉션뷰 셀을 가져옴 - 컬렉션 뷰에는
+//
+//    }
+//
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 500
+//    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailPostCollectionViewCell.identifier, for: indexPath) as? DetailPostCollectionViewCell else { return UITableViewCell() }
-        
-        // cell 에서 configure로 컬렉션뷰 셀을 가져옴 - 컬렉션 뷰에는
-        
-    }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 500
-    }
-    
-    
-}
+//}
 
 
 

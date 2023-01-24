@@ -14,48 +14,14 @@ struct AllPostModel : Decodable {
     let status : Int
     let code : String
     let message : String
-    let data : [AllPostData?]
+    let data : [AllPostData]?
 }
 
 struct AllPostData : Decodable {
-    let Key : AllViewKey?
-    let value : [AllViewValue]?
-}
-
-struct AllViewKey : Decodable{
     let boardId : Int?
-    let user : AllViewUser?
     let categoryId : Int?
     let title : String?
-    let contents : String?
-    let createAt : String?
     let updateAt : String?
-    let status : Int?
     let price : Int?
+    let imageUrl : String?
 }
-
-
-struct AllViewValue : Decodable {
-    let boardImageId : Int?
-    let boardId :Int?
-    let image : AllViewImage?
-    
-    
-}
-
-struct AllViewUser : Decodable {
-    let userId : Int?
-    let email : String?
-    let id : String?
-    let nickname : String?
-    let introduction : String?
-}
-
-struct AllViewImage : Decodable{
-    let createAt : String?
-    let updateAt : String?
-    let status : Int?
-    let imageId : Int?
-    let imageURL : String?
-}
-

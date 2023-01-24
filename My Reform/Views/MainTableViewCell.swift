@@ -14,8 +14,6 @@ import SDWebImage
 
 class MainTableViewCell: UITableViewCell {
 
-    var allPostModel: AllPostModel!
-
     
     static let identifier = "MainTableViewCell"
     
@@ -100,14 +98,13 @@ class MainTableViewCell: UITableViewCell {
     
     
         //ViewModel 에서 포스터 URL값과 포스터 이름을 불러옴
-        public func configure(with model: AllPostModel) {
-//            guard let url = URL(string: (model.value?[0].image?.imageURL)!) else { return }
-//            guard let url = model.data.어쩌구URL else { return }
+        public func configure(with model: HomeFeedViewModel) {
+            guard let url = URL(string: model.imageUrl) else { return }
             
-//            titleCellImageView.sd_setImage(with: url, completed: nil)
-//            titleCellLabel.text = model.title
-//            minuteCellLabel.text = String("\(model.minute)")
-//            priceCellLabel.text = model.price
+            titleCellImageView.sd_setImage(with: url, completed: nil)
+            titleCellLabel.text = model.title
+            minuteCellLabel.text = model.minute
+            priceCellLabel.text = String("\(model.price)")
             
         }
     

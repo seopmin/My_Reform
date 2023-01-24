@@ -13,13 +13,15 @@ class AllPostDataManager {
     
     func allPostGet(_ viewController: HomeViewController) {
         
-        AF.request("\(Constants.baseURL)/boards?lastBoardId=10&size=10",method: .get, parameters: nil).validate().responseDecodable(of: AllPostModel.self) { response in
+        AF.request("\(Constants.baseURL)/boards?lastBoardId=30&size=10",method: .get, parameters: nil).validate().responseDecodable(of: AllPostModel.self) { response in
                 switch(response.result) {
                 case .success(let result) :
                     print("전체 게시물 서버통신 성공 - \(result)")
                     switch(result.status) {
                     case 200 :
-                        viewController.successAllPostModel(result: result)
+                        guard let data = result.data else { return }
+                        viewController.successAllPostModel(result: data)
+//                        print("result data count = \(result.data?.count)")
 //                        print("print - result data = \(result.data!)")
                     case 404 :
                         print("게시물이 없는 경우입니다 - \(result.message)")
