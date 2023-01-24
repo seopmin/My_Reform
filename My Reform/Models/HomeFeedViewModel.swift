@@ -8,8 +8,8 @@
 import UIKit
 
 struct HomeFeedViewModel {
-    var image: UIImage
+    var imageUrl: String
     var title: String
-    var minute: Int
-    var price: String
+    var minute: String
+    var price: Int
 }
