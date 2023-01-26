@@ -10,6 +10,8 @@
 		370D8BB8296FCF7F00E4B65E /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370D8BB7296FCF7F00E4B65E /* CategoryViewController.swift */; };
 		370D8BC0296FE0A000E4B65E /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370D8BBF296FE0A000E4B65E /* CategoryCell.swift */; };
 		373C5623297E7DEC00F00F1F /* SearchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373C5622297E7DEC00F00F1F /* SearchListViewController.swift */; };
+		379365422982D254009ABF2C /* UploadInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379365412982D254009ABF2C /* UploadInput.swift */; };
+		379365462982D709009ABF2C /* UploadDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379365452982D709009ABF2C /* UploadDataManager.swift */; };
 		37F6EB0929827EC20088EAD8 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F6EB0829827EC20088EAD8 /* SearchCollectionViewCell.swift */; };
 		37F6EB0D29827EFC0088EAD8 /* SearchFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F6EB0C29827EFC0088EAD8 /* SearchFeedViewModel.swift */; };
 		37F6EB0F29827F4F0088EAD8 /* SearchViewPostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F6EB0E29827F4F0088EAD8 /* SearchViewPostModel.swift */; };
@@ -56,6 +58,8 @@
 		370D8BB7296FCF7F00E4B65E /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		370D8BBF296FE0A000E4B65E /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		373C5622297E7DEC00F00F1F /* SearchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewController.swift; sourceTree = "<group>"; };
+		379365412982D254009ABF2C /* UploadInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadInput.swift; sourceTree = "<group>"; };
+		379365452982D709009ABF2C /* UploadDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadDataManager.swift; sourceTree = "<group>"; };
 		37F6EB0829827EC20088EAD8 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		37F6EB0C29827EFC0088EAD8 /* SearchFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFeedViewModel.swift; sourceTree = "<group>"; };
 		37F6EB0E29827F4F0088EAD8 /* SearchViewPostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewPostModel.swift; sourceTree = "<group>"; };
@@ -111,6 +115,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3793653C2982D20E009ABF2C /* Upload */ = {
+			isa = PBXGroup;
+			children = (
+				379365412982D254009ABF2C /* UploadInput.swift */,
+			);
+			path = Upload;
+			sourceTree = "<group>";
+		};
 		47526634297309AD008D5F1D /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +147,7 @@
 			children = (
 				4752664429750F25008D5F1D /* SignUpDataManager.swift */,
 				4752664629750F30008D5F1D /* LoginDataManager.swift */,
+				379365452982D709009ABF2C /* UploadDataManager.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -151,6 +164,7 @@
 		47526649297516FF008D5F1D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3793653C2982D20E009ABF2C /* Upload */,
 				4752664F29751977008D5F1D /* Login */,
 				4752664A29751762008D5F1D /* SignUp */,
 				47C9C2F629796ECF00DF89D8 /* PresentPosts */,
@@ -473,6 +487,7 @@
 				47FB54D12968590000B3029C /* AppDelegate.swift in Sources */,
 				47FB54EA29685EA400B3029C /* MessageViewController.swift in Sources */,
 				373C5623297E7DEC00F00F1F /* SearchListViewController.swift in Sources */,
+				379365422982D254009ABF2C /* UploadInput.swift in Sources */,
 				47C9C2E829781D3000DF89D8 /* UserPrivacyAllowViewController.swift in Sources */,
 				4752665329751999008D5F1D /* LoginModel.swift in Sources */,
 				4752664C2975177D008D5F1D /* SignUpInput.swift in Sources */,
@@ -495,6 +510,7 @@
 				47C9C2F3297964F700DF89D8 /* AddPostModel.swift in Sources */,
 				D3C0DEF2298282E3003A62B0 /* SplashViewController.swift in Sources */,
 				4770C659297ECAB4009E3E58 /* HomeFeedViewModel.swift in Sources */,
+				379365462982D709009ABF2C /* UploadDataManager.swift in Sources */,
 				47C9C2F929796F0B00DF89D8 /* AllPostModel.swift in Sources */,
 				37F6EB0D29827EFC0088EAD8 /* SearchFeedViewModel.swift in Sources */,
 				47526655297529AE008D5F1D /* SignUpViewController.swift in Sources */,

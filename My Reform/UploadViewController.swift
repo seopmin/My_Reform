@@ -70,6 +70,10 @@ extension UploadViewController {
     
     // 완료버튼 누를 때
     @objc func didTapRightBarButton() {
+        // 아이디 카테고리 이미지 남음
+        let userData = UploadInput(id: "2", categoryId: 1, title: titleTextField.text ?? "", contents: descriptionTextView.text, price: Int(priceTextField.text!) ?? -1)
+//        , images:  "camera.png"
+        UploadDataManager.posts(self, userData)
         dismiss(animated: true)
         print("didTapRightBarButton is Called")
         

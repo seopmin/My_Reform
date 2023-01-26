@@ -68,7 +68,7 @@ extension SearchViewController: UICollectionViewDataSource {
         
         let model = searchViewPostModel[indexPath.row]
         
-        cell.SearchConfig(with: SearchFeedViewModel(boardId: model.boardId ?? -1, imageUrl: model.imageURL ?? ""))
+        cell.SearchConfig(with: SearchFeedViewModel(boardId: model.boardId ?? -1, imageUrl: model.imageUrl?[0] ?? ""))
         
         
 //        cell.backgroundColor = [.systemGray, .systemGray2, .systemGray3, .systemGray4, .systemGray5, .systemGray6].randomElement()
@@ -147,25 +147,25 @@ extension SearchViewController : UISearchControllerDelegate  {
 //        return true
 //    }
 
-    // when clicked searchButton in keyboard
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        searchBar.resignFirstResponder()
-//        guard let text = searchController.searchBar.text else { return }
+//     when clicked searchButton in keyboard
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        guard let text = searchController.searchBar.text else { return }
 //        searchBtnClicked()
-//
-//
-//        print("search result : ", text)
-//    }
+
+
+        print("search result : ", text)
+    }
     
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        // 검색값이 비어있을 때 자동적으로 포커싱 해제(키보드 내려감)
-//        if(searchText.isEmpty) {
-//            // 검색바에 x를 누를 때는 포커싱해제가 안되서 아래를 이용하여 딜레이를 줌
-//            DispatchQueue.main.asyncAfter(deadline: .now()+0.01, execute:{ searchBar.resignFirstResponder()})
-//             // 포커싱 해제
-//        }
-//
-//    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // 검색값이 비어있을 때 자동적으로 포커싱 해제(키보드 내려감)
+        if(searchText.isEmpty) {
+            // 검색바에 x를 누를 때는 포커싱해제가 안되서 아래를 이용하여 딜레이를 줌
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.01, execute:{ searchBar.resignFirstResponder()})
+             // 포커싱 해제
+        }
+
+    }
 }
 
 
