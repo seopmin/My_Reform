@@ -10,7 +10,7 @@ import Foundation
 struct LoginModel : Decodable {
     var status : Int
     var code : String?
-    var description : String
+    var message : String
     var token : String?
 }
 

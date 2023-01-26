@@ -9,7 +9,7 @@ import UIKit
 
 class SearchViewController: UIViewController,  UISearchBarDelegate, UIGestureRecognizerDelegate {
     
-    private let searchController = UISearchController(searchResultsController: nil)
+    private let searchController = UISearchController(searchResultsController: SearchListViewController())
     private let refreshControl = UIRefreshControl()
     private let collectionViewLayout = UICollectionViewFlowLayout()
     private lazy var exploreCollectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)

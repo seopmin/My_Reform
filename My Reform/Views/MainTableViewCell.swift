@@ -99,9 +99,9 @@ class MainTableViewCell: UITableViewCell {
     
         //ViewModel 에서 포스터 URL값과 포스터 이름을 불러옴
         public func configure(with model: HomeFeedViewModel) {
-            guard let url = URL(string: model.imageUrl) else { return }
-            
-            titleCellImageView.sd_setImage(with: url, completed: nil)
+            guard let url = URL(string:"\(Constants.baseURL)\(model.imageUrl)") else { return }
+            print(url)
+            titleCellImageView.sd_setImage(with:url, completed: nil)
             titleCellLabel.text = model.title
             minuteCellLabel.text = model.minute
             priceCellLabel.text = String("\(model.price)")
