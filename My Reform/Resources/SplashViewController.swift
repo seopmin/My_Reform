@@ -45,7 +45,7 @@ class SplashViewController: UIViewController {
         
         splashTitle.snp.makeConstraints{
             (make) in
-            make.leading.equalTo(splashTitle2.snp.leading).inset(110.44)
+            make.leading.equalTo(splashTitle2.snp.leading).inset(323.24)
             make.centerY.equalToSuperview()
             make.width.equalTo(42.56)
             make.height.equalTo(89.79)
@@ -70,6 +70,7 @@ class SplashViewController: UIViewController {
         self.splashTitle.alpha=1
         self.splashTitle2.alpha=1
         self.splashTitle3.alpha=0
+        
         UIView.animate(withDuration: 1.0, delay: 1.5, options: .curveEaseIn, animations: {
             //애니메이션처리
             var splashTitleTopFrame = self.splashTitle.frame
