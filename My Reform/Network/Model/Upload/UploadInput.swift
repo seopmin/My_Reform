@@ -15,16 +15,15 @@ struct UploadInput: Encodable{
     var title: String?
     var contents: String?
     var price: Int?
-    var images: [Image]?
     
 
-    init(id: String, categoryId: [Int], title: String, contents: String, price: Int, images: [Image]) {
+    init(id: String, categoryId: [Int], title: String, contents: String, price: Int/*, images: [Image]*/) {
         self.id = id
         self.categoryId = categoryId
         self.title = title
         self.contents = contents
         self.price = price
-        self.images = images
+//        self.images = images
     }
     
 }
