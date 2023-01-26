@@ -6,13 +6,30 @@
 //
 
 import UIKit
+import Alamofire
 
 class SearchViewController: UIViewController,  UISearchBarDelegate, UIGestureRecognizerDelegate {
     
-    private let searchController = UISearchController(searchResultsController: SearchListViewController())
+    var searchViewPostModel: [SearchViewPostData] = [] {
+        didSet {
+            self.exploreCollectionView.reloadData()
+        }
+    }
+    
+    private let searchController : UISearchController = {
+      let controller = UISearchController(searchResultsController: SearchListViewController())
+        controller.searchBar.placeholder = "검색"
+        controller.searchBar.searchBarStyle = .minimal
+        return controller
+    }()
+    
     private let refreshControl = UIRefreshControl()
     private let collectionViewLayout = UICollectionViewFlowLayout()
-    private lazy var exploreCollectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+    private lazy var exploreCollectionView : UICollectionView = {
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+        
+        return collection
+    }()
     
     
     override func viewDidLoad() {
@@ -20,6 +37,11 @@ class SearchViewController: UIViewController,  UISearchBarDelegate, UIGestureRec
         
         attribute()
         layout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("- requestFunc 실행")
+        requestFunc()
     }
 }
 
@@ -38,12 +60,18 @@ extension SearchViewController : UICollectionViewDelegateFlowLayout {
 
 extension SearchViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 200
+        return searchViewPostModel.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchCollectionViewCell", for: indexPath)
-        cell.backgroundColor = [.systemGray, .systemGray2, .systemGray3, .systemGray4, .systemGray5, .systemGray6].randomElement()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchCollectionViewCell", for: indexPath) as! SearchCollectionViewCell
+        
+        let model = searchViewPostModel[indexPath.row]
+        
+        cell.SearchConfig(with: SearchFeedViewModel(boardId: model.boardId ?? -1, imageUrl: model.imageURL ?? ""))
+        
+        
+//        cell.backgroundColor = [.systemGray, .systemGray2, .systemGray3, .systemGray4, .systemGray5, .systemGray6].randomElement()
         return cell
     }
 }
@@ -53,38 +81,41 @@ extension SearchViewController {
     @objc func beginRefresh(_ sender: UIRefreshControl) {
         print("beginRefresh!")
         sender.endRefreshing()
+        requestFunc()
     }
     
     // 키보드 search 버튼 클릭시 데이터 전달
-    @objc func searchBtnClicked() {
-        let vc = SearchListViewController()
-        navigationController?.pushViewController(vc, animated: true)
-        
-        
-        vc.vcTitle = searchController.searchBar.text ?? ""
-    }
+//    @objc func searchBtnClicked() {
+//        let vc = SearchListViewController()
+//        navigationController?.pushViewController(vc, animated: true)
+//
+//
+//        vc.vcTitle = searchController.searchBar.text ?? ""
+//    }
 }
 
-extension SearchViewController {
+extension SearchViewController : UISearchResultsUpdating{
     func attribute() {
         view.backgroundColor = .systemBackground
         
         navigationController?.hidesBarsOnSwipe = true
         
         searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.placeholder = "검색"
-        searchController.searchResultsUpdater = self
-        navigationItem.titleView = searchController.searchBar
+//        searchController.searchResultsUpdater = self
+        navigationItem.titleView?.isHidden = true
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
-        
+//        navigationItem.titleView = searchController.searchBar
+        navigationItem.searchController = searchController
+        searchController.searchResultsUpdater = self
 
         refreshControl.addTarget(self, action: #selector(beginRefresh(_:)), for: .valueChanged)
         exploreCollectionView.refreshControl = refreshControl
         
         exploreCollectionView.dataSource = self
         exploreCollectionView.delegate = self
-        exploreCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "SearchCollectionViewCell")
+        exploreCollectionView.register(SearchCollectionViewCell.self, forCellWithReuseIdentifier: "SearchCollectionViewCell")
+        
         
     }
     func layout() {
@@ -95,50 +126,80 @@ extension SearchViewController {
     }
 }
 
-extension SearchViewController : UISearchResultsUpdating, UISearchControllerDelegate  {
+extension SearchViewController : UISearchControllerDelegate  {
 
     func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else{return}
-        print(text)
+//        let vc = SearchListViewController()
+//        navigationController?.pushViewController(vc, animated: false)
+        
+        let searchBar = searchController.searchBar
+        
+        guard let text = searchBar.text, !text.trimmingCharacters(in: .whitespaces).isEmpty, let resultController = searchController.searchResultsController as? SearchListViewController  else{return}
+//        guard let text = searchBar.text, !text.trimmingCharacters(in: .whitespaces).isEmpty, text.trimmingCharacters(in: .whitespaces).count >= 3, let resultController = searchController.searchResultsController as? SearchListViewController  else{return}
+        
+        print(resultController)
     }
+//
+//    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+//        let vc = SearchListViewController()
+//        navigationController?.pushViewController(vc, animated: false)
+//
+//        return true
+//    }
 
     // when clicked searchButton in keyboard
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-        guard let text = searchController.searchBar.text else { return }
-        searchBtnClicked()
-        
-//        if text.isEmpty {
-//            self.view.makeToast(
-//        }
-        print("search result : ", text)
-    }
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        searchBar.resignFirstResponder()
+//        guard let text = searchController.searchBar.text else { return }
+//        searchBtnClicked()
+//
+//
+//        print("search result : ", text)
+//    }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        // 검색값이 비어있을 때 자동적으로 포커싱 해제(키보드 내려감)
-        if(searchText.isEmpty) {
-            // 검색바에 x를 누를 때는 포커싱해제가 안되서 아래를 이용하여 딜레이를 줌
-            DispatchQueue.main.asyncAfter(deadline: .now()+0.01, execute:{ searchBar.resignFirstResponder()})
-             // 포커싱 해제
-        }
-
-    }
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        // 검색값이 비어있을 때 자동적으로 포커싱 해제(키보드 내려감)
+//        if(searchText.isEmpty) {
+//            // 검색바에 x를 누를 때는 포커싱해제가 안되서 아래를 이용하여 딜레이를 줌
+//            DispatchQueue.main.asyncAfter(deadline: .now()+0.01, execute:{ searchBar.resignFirstResponder()})
+//             // 포커싱 해제
+//        }
+//
+//    }
 }
 
-extension SearchViewController {
-    func configureNavbar() {
+
+extension SearchViewController  {
+    
+    
+    func successSearchViewPostModel(result: [SearchViewPostData]) {
+        self.searchViewPostModel = result
+        print(searchViewPostModel.count)
         
-//        var image = UIImage(named: "myReform_logo")?.resize(newWidth: 150)
-//        image = image?.withRenderingMode(.alwaysOriginal) //색깔 원래대로
-//        let imageBtn = UIBarButtonItem(image: image, style: .done, target: self, action: nil)
-//        let categoryBtn = UIBarButtonItem(image: UIImage(named: "category")?.resize(newWidth: 25), style: .done, target: self, action: #selector(categoryBtnClicked))
-//        let uploadBtn = UIBarButtonItem(image: UIImage(named: "upload")?.resize(newWidth: 25), style: .done, target: self, action: #selector(uploadBtnClicked))
+    }
+    
+    func requestFunc() {
+        AF.request("\(Constants.baseURL)/boards?lastBoardId=100&size=30&keyword=",method: .get, parameters: nil ).validate().responseDecodable(of: SearchViewPostModel.self) { response in
+            debugPrint(response)
+            switch(response.result) {
+            case .success(let result) :
+                print("검색 UI 서버 통신 성공 - \(result)")
+                switch(result.status) {
+                case 200:
+                    guard let data = result.data else {return}
+                    self.successSearchViewPostModel(result: data)
+//                    print("result data count = \(result.data?.count)")
+                case 404:
+                    print("데이터가 없는 경우입니다. - \(result.message)")
+                default:
+                    print("데이터베이스 오류")
+                    return
+                }
+            case .failure(let error):
+                print(error)
+            }
             
-//        self.navigationItem.leftBarButtonItem = imageBtn
-//        self.navigationItem.rightBarButtonItems = [categoryBtn, uploadBtn]
-        
-        navigationController?.navigationBar.barTintColor = .white
-        navigationController?.navigationBar.tintColor = .label
+        }
     }
 }
 
