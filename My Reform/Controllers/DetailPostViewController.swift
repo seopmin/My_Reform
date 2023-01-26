@@ -13,12 +13,13 @@ import Alamofire
 // 0126 스크롤 이미지 뷰에 이미지 넣는 함수 - api 보고 다시 지정 [x]
 
 // 테이블 뷰에서 셀 클릭 시 넘어오는 뷰로 클릭했던 data의 indexPath 값을 이 뷰로 전송
-class DetailPostViewController: UIViewController {
+class DetailPostViewController: UIViewController, UIScrollViewDelegate {
     
     // 0123 게시물의 상세정보 불러오는 모델로 변경해야함
     var detailPostModel: [AllPostData] = []
 
-
+    var imageUrls: [UIImage] = []
+    
     //MARK: - 프로퍼티
 //    var imagesViews = [UIImageView]()
     
@@ -37,16 +38,9 @@ class DetailPostViewController: UIViewController {
         $0.backgroundColor = .white
     }
     
-    private let imagePageControl = UIPageControl().then {
-        $0.hidesForSinglePage = true
-        $0.currentPage = 0
-        $0.backgroundColor = .orange
-        $0.pageIndicatorTintColor = .lightGray    // 페이지를 암시하는 동그란 점의 색상
-        $0.currentPageIndicatorTintColor = .black // 현재 페이지를 암시하는 동그란 점 색상
-    }
     
     private let imageScrollView = UIScrollView().then {
-        $0.backgroundColor = .systemYellow
+        $0.backgroundColor = .white
         $0.indicatorStyle = .black
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.showsVerticalScrollIndicator = false
@@ -56,6 +50,7 @@ class DetailPostViewController: UIViewController {
     
     private let imageView = UIImageView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.contentMode = .scaleAspectFill
     }
     
     private let profileImageView = UIImageView().then {
@@ -127,10 +122,9 @@ class DetailPostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        imageScrollView.delegate = self
         addContentScrollView()
-//        setPageControl()
-        
+        imageScrollView.delegate = self
+        print("detailPost 출력 - \(detailPostModel)")
         setUIView()
         setUIConstraints()
         
@@ -138,51 +132,44 @@ class DetailPostViewController: UIViewController {
     }
     
 // MARK: - 데이터 전달& 설정 함수들
- 
+    
     // 값들 지정 함수
     func setInfo() {
         addContentScrollView()
-//        userNicknameLabel.text = detailPostModel.nickname
-//        minuteLabel.text = detailPostModel.minute
-//        titleLabel.text = detailPostModel.title
-//        categoryLabel.text = detailPostModel.categoryId
-//        contentTextView.text = detailPostModel.contents
-//        priceLabel.text = detailPostModel.price
+        userNicknameLabel.text = detailPostModel[0].nickname
+        minuteLabel.text = detailPostModel[0].updateAt
+        titleLabel.text = detailPostModel[0].title
+        categoryLabel.text = "\(detailPostModel[0].categoryId!)"
+        contentTextView.text = detailPostModel[0].contents
+        guard let price = detailPostModel[0].price else { return }
+        priceLabel.text = "\(price) 원"
 
     }
     
     // 스크롤뷰에 이미지 설정
     private func addContentScrollView() {
-//        for i in 0..< detailPostModel.data.imageUrl.count {
-//            // 스크롤뷰의 길이(xPos) = 스크롤뷰 가로길이 * 현재 인덱스
-//            let xPos = imageScrollView.frame.width * CGFloat(i)
-//            imageView.frame = CGRect(x: xPos, y: 0, width: imageScrollView.bounds.width, height: imageScrollView.bounds.height)
-//            // 이미지뷰에 이미지 지정
-//            imageView.image = detailPostModel.images[i]
-//            // 스크롤뷰의 컨텐츠 사이즈 = imageView 가로길이
-//            imageScrollView.contentSize.width = imageView.frame.width * CGFloat(i + 1)
-//        }
+        
+        for i in 0 ..< detailPostModel[0].imageUrl!.count {
+            // 스크롤뷰의 길이(xPos) = 스크롤뷰 가로길이 * 현재 인덱스
+            let xPos = imageScrollView.frame.width * CGFloat(i)
+            imageView.frame = CGRect(x: xPos, y: 0, width: imageScrollView.bounds.width, height: imageScrollView.bounds.height)
+            print(imageScrollView.frame.width)
+            print(imageView.frame.width)
+            // 이미지뷰에 이미지 지정
+            guard let url = URL(string:"\(Constants.baseURL)\(detailPostModel[0].imageUrl![i])") else { return }
+            print("url 링크는 = \(url)")
+            imageView.sd_setImage(with:url, completed: nil)
+//          스크롤뷰의 컨텐츠 사이즈 = imageView 가로길이
+            imageScrollView.contentSize.width = imageView.frame.width * CGFloat(i + 1)
+        }
     }
-    
-     // imagePageController의 페이지 갯수는 불러온 데이터의 image갯수
-    private func setPageControl() {
-//        imagePageControl.numberOfPages = 5 // detailPostModel.images.count
-    }
-    
-    // imagePageController의 페이지는 현재페이지
-    private func setPageControlSelectedPage(currentPage: Int) {
-        imagePageControl.currentPage = currentPage
-    }
-    
-    
-
+   
     private func setUIView() {
         view.addSubview(postScrollView)
         view.addSubview(bottomView)
         
         postScrollView.addSubview(postView)
         postView.addSubview(imageScrollView)
-        postView.addSubview(imagePageControl)
         imageScrollView.addSubview(imageView)
         
         postView.addSubview(profileImageView)
@@ -233,11 +220,6 @@ class DetailPostViewController: UIViewController {
             make.trailing.equalTo(postView.snp.trailing)
             
         }
-
-//        imagePageControl.snp.makeConstraints { make in
-//            make.centerY.equalTo(postView.snp.centerY)
-//            make.bottom.equalTo(imageScrollView.snp.bottom).offset(-10)
-//        }
         
         imageView.snp.makeConstraints { make in
             make.top.equalTo(imageScrollView.snp.top)
@@ -320,15 +302,6 @@ class DetailPostViewController: UIViewController {
         
         
     
-
-//MARK: - PageControl 이미지에 맞게 설정 - 완료[x]
-extension DetailPostViewController : UIScrollViewDelegate {
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-            let value = scrollView.contentOffset.x/scrollView.frame.size.width
-            setPageControlSelectedPage(currentPage: Int(round(value)))
-        }
-}
 
 
 
