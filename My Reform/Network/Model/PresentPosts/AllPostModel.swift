@@ -8,8 +8,7 @@
 import Foundation
 
 
-// 01.21 price와 imageURL 임의로 추가 - API명세서 확인 후 변경해야함 []
-
+// 0126 전체 게시물 조회 API 바꿔야함 [x]
 struct AllPostModel : Decodable {
     let status : Int
     let code : String
@@ -23,5 +22,5 @@ struct AllPostData : Decodable {
     let title : String?
     let updateAt : String?
     let price : Int?
-    let imageUrl : String?
+    let imageUrl : [String]?
 }

@@ -10,5 +10,5 @@ import Foundation
 struct SignUpModel: Decodable{
     var status: Int
     var code: String?
-    var description : String
+    var message : String
 }

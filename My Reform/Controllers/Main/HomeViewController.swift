@@ -10,10 +10,7 @@ import SnapKit
 import Alamofire
 import SDWebImage
 
-//셀을 클릭했을 때 넘어어가서 다음 데이터를 불러올 모델 프로토콜
-protocol MainTableViewCellDelegate : AnyObject {
-    func MainTableViewCellDidTapCell(_ cell: MainTableViewCell, model: AllPostModel) //모델을 다음 데이터에서 불러올 모델로 변경해줘야함
-}
+// 0126 메인에서 테이블 뷰가 10개 이후로 무한 스크롤 불러오는 것들 구현해야함 [x]
 
 class HomeViewController: UIViewController {
     
@@ -24,8 +21,7 @@ class HomeViewController: UIViewController {
             self.homeFeedTable.reloadData()
         }
     }
-    
-    weak var delegate : MainTableViewCellDelegate?
+
 
     private let homeFeedTable: UITableView = {
         
@@ -128,12 +124,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
+
         
         let model = allPostModel[indexPath.row]
 //        guard let model = allPostModel[indexPath.row] else { return UITableViewCell() } //현재 model 은 옵셔널 스트링 값
         guard let price = model.price else { return UITableViewCell()}
 //        cell.titleCellImageView =
-        cell.configure(with: HomeFeedViewModel(imageUrl: model.imageUrl ?? "", title: model.title ?? "", minute: model.updateAt ?? "", price: price))
+        cell.configure(with: HomeFeedViewModel(imageUrl: model.imageUrl?[0] ?? "", title: model.title ?? "", minute: model.updateAt ?? "", price: price))
         
         
         return cell
@@ -144,11 +141,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        //데이터 매니저에서 세부데이터를 불러오는 함수를 불러와 실행 - 모델도 변경해주어야함
+        // 셀 선택시 회색화면 지우기
         print("cell indexPath = \(indexPath)")
-//        delegate?.MainTableViewCellDidTapCell(self, model: allPostModel)
+        tableView.deselectRow(at: indexPath, animated: true)
         
+        let model = allPostModel[indexPath.row]
+        
+        let vc = DetailPostViewController()
+        vc.detailPostModel = [model]
+        print("detailPostModel에 data 저장됨")
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     //상단 네비게이션바가  스크롤하면 같이 올라가게 만듬
@@ -159,3 +161,4 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 //        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
 //    }
 }
+
