@@ -1,22 +1,21 @@
 //
-//  AllPostModel.swift
+//  SearchViewPostModel.swift
 //  My Reform
 //
-//  Created by 박현준 on 2023/01/19.
+//  Created by 곽민섭 on 2023/01/26.
 //
 
 import Foundation
 
-
-// 0126 전체 게시물 조회 API 바꿔야함 [x]
-struct AllPostModel : Decodable {
+struct SearchViewPostModel : Decodable {
     let status : Int
     let code : String
     let message : String
-    let data : [AllPostData]?
+    let data : [SearchViewPostData]?
 }
 
-struct AllPostData : Decodable {
+
+struct SearchViewPostData : Decodable {
     let boardId : Int?
     let categoryId : [Int]?
     let title : String?

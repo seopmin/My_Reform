@@ -10,6 +10,11 @@
 		370D8BB8296FCF7F00E4B65E /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370D8BB7296FCF7F00E4B65E /* CategoryViewController.swift */; };
 		370D8BC0296FE0A000E4B65E /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370D8BBF296FE0A000E4B65E /* CategoryCell.swift */; };
 		373C5623297E7DEC00F00F1F /* SearchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373C5622297E7DEC00F00F1F /* SearchListViewController.swift */; };
+		379365422982D254009ABF2C /* UploadInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379365412982D254009ABF2C /* UploadInput.swift */; };
+		379365462982D709009ABF2C /* UploadDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379365452982D709009ABF2C /* UploadDataManager.swift */; };
+		37F6EB0929827EC20088EAD8 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F6EB0829827EC20088EAD8 /* SearchCollectionViewCell.swift */; };
+		37F6EB0D29827EFC0088EAD8 /* SearchFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F6EB0C29827EFC0088EAD8 /* SearchFeedViewModel.swift */; };
+		37F6EB0F29827F4F0088EAD8 /* SearchViewPostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F6EB0E29827F4F0088EAD8 /* SearchViewPostModel.swift */; };
 		4752663C29730A55008D5F1D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4752663B29730A55008D5F1D /* Constants.swift */; };
 		4752663E29730AA6008D5F1D /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4752663D29730AA6008D5F1D /* MainTableViewCell.swift */; };
 		4752664029730CD3008D5F1D /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4752663F29730CD3008D5F1D /* UploadViewController.swift */; };
@@ -21,6 +26,8 @@
 		4752665329751999008D5F1D /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4752665229751999008D5F1D /* LoginModel.swift */; };
 		47526655297529AE008D5F1D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47526654297529AE008D5F1D /* SignUpViewController.swift */; };
 		4770C649297AD686009E3E58 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4770C648297AD686009E3E58 /* String.swift */; };
+		4770C659297ECAB4009E3E58 /* HomeFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4770C658297ECAB4009E3E58 /* HomeFeedViewModel.swift */; };
+		4770C65B297ECB11009E3E58 /* DetailPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4770C65A297ECB11009E3E58 /* DetailPostViewController.swift */; };
 		47C9C2E329769DE500DF89D8 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C9C2E229769DE500DF89D8 /* UITextField.swift */; };
 		47C9C2E629781D1A00DF89D8 /* UserServiceAllowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C9C2E529781D1A00DF89D8 /* UserServiceAllowViewController.swift */; };
 		47C9C2E829781D3000DF89D8 /* UserPrivacyAllowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C9C2E729781D3000DF89D8 /* UserPrivacyAllowViewController.swift */; };
@@ -41,6 +48,7 @@
 		47FB54F0296867D300B3029C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB54EF296867D300B3029C /* LoginViewController.swift */; };
 		47FB54F729686A2300B3029C /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB54F629686A2300B3029C /* UIColor.swift */; };
 		47FB550A296BE65E00B3029C /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FB5509296BE65E00B3029C /* TermsViewController.swift */; };
+		D3C0DEF2298282E3003A62B0 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C0DEF129828291003A62B0 /* SplashViewController.swift */; };
 		FEA582A3655E8CAFF57EA26C /* Pods_My_Reform.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34B507B16C947CBB18B3A995 /* Pods_My_Reform.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +58,11 @@
 		370D8BB7296FCF7F00E4B65E /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		370D8BBF296FE0A000E4B65E /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		373C5622297E7DEC00F00F1F /* SearchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewController.swift; sourceTree = "<group>"; };
+		379365412982D254009ABF2C /* UploadInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadInput.swift; sourceTree = "<group>"; };
+		379365452982D709009ABF2C /* UploadDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadDataManager.swift; sourceTree = "<group>"; };
+		37F6EB0829827EC20088EAD8 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
+		37F6EB0C29827EFC0088EAD8 /* SearchFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFeedViewModel.swift; sourceTree = "<group>"; };
+		37F6EB0E29827F4F0088EAD8 /* SearchViewPostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewPostModel.swift; sourceTree = "<group>"; };
 		47526619296C7B52008D5F1D /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		4752663B29730A55008D5F1D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4752663D29730AA6008D5F1D /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
@@ -62,6 +75,8 @@
 		4752665229751999008D5F1D /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		47526654297529AE008D5F1D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		4770C648297AD686009E3E58 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		4770C658297ECAB4009E3E58 /* HomeFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedViewModel.swift; sourceTree = "<group>"; };
+		4770C65A297ECB11009E3E58 /* DetailPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewController.swift; sourceTree = "<group>"; };
 		47C9C2E229769DE500DF89D8 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		47C9C2E529781D1A00DF89D8 /* UserServiceAllowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceAllowViewController.swift; sourceTree = "<group>"; };
 		47C9C2E729781D3000DF89D8 /* UserPrivacyAllowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrivacyAllowViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +100,7 @@
 		47FB54F629686A2300B3029C /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		47FB5509296BE65E00B3029C /* TermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
 		5F644897E4B6FAE3A5572350 /* Pods-My Reform.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My Reform.debug.xcconfig"; path = "Target Support Files/Pods-My Reform/Pods-My Reform.debug.xcconfig"; sourceTree = "<group>"; };
+		D3C0DEF129828291003A62B0 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +115,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3793653C2982D20E009ABF2C /* Upload */ = {
+			isa = PBXGroup;
+			children = (
+				379365412982D254009ABF2C /* UploadInput.swift */,
+			);
+			path = Upload;
+			sourceTree = "<group>";
+		};
 		47526634297309AD008D5F1D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4770C658297ECAB4009E3E58 /* HomeFeedViewModel.swift */,
+				37F6EB0C29827EFC0088EAD8 /* SearchFeedViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -121,6 +147,7 @@
 			children = (
 				4752664429750F25008D5F1D /* SignUpDataManager.swift */,
 				4752664629750F30008D5F1D /* LoginDataManager.swift */,
+				379365452982D709009ABF2C /* UploadDataManager.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -137,6 +164,7 @@
 		47526649297516FF008D5F1D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3793653C2982D20E009ABF2C /* Upload */,
 				4752664F29751977008D5F1D /* Login */,
 				4752664A29751762008D5F1D /* SignUp */,
 				47C9C2F629796ECF00DF89D8 /* PresentPosts */,
@@ -208,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				47C9C2F829796F0B00DF89D8 /* AllPostModel.swift */,
+				37F6EB0E29827F4F0088EAD8 /* SearchViewPostModel.swift */,
 			);
 			path = PresentPosts;
 			sourceTree = "<group>";
@@ -254,6 +283,7 @@
 				47FB5502296BD2A000B3029C /* Main */,
 				370D8BB7296FCF7F00E4B65E /* CategoryViewController.swift */,
 				373C5622297E7DEC00F00F1F /* SearchListViewController.swift */,
+				4770C65A297ECB11009E3E58 /* DetailPostViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -271,6 +301,7 @@
 			isa = PBXGroup;
 			children = (
 				47FB54D92968590200B3029C /* Assets.xcassets */,
+				D3C0DEF129828291003A62B0 /* SplashViewController.swift */,
 				47FB54DB2968590200B3029C /* LaunchScreen.storyboard */,
 				47FB54F42968690000B3029C /* Font */,
 			);
@@ -297,6 +328,7 @@
 			children = (
 				370D8BBF296FE0A000E4B65E /* CategoryCell.swift */,
 				4752663D29730AA6008D5F1D /* MainTableViewCell.swift */,
+				37F6EB0829827EC20088EAD8 /* SearchCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -357,7 +389,6 @@
 		47FB54C52968590000B3029C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
@@ -444,16 +475,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				47FB550A296BE65E00B3029C /* TermsViewController.swift in Sources */,
+				37F6EB0F29827F4F0088EAD8 /* SearchViewPostModel.swift in Sources */,
 				47C9C2F529796CA500DF89D8 /* AddPostInput.swift in Sources */,
 				47FB54E829685E9000B3029C /* SearchViewController.swift in Sources */,
 				4752664E2975179A008D5F1D /* SignUpModel.swift in Sources */,
 				4770C649297AD686009E3E58 /* String.swift in Sources */,
+				4770C65B297ECB11009E3E58 /* DetailPostViewController.swift in Sources */,
 				47C9C2F02979644600DF89D8 /* AllPostDataManager.swift in Sources */,
 				47FB54D52968590000B3029C /* MainTabBarViewController.swift in Sources */,
 				370D8BC0296FE0A000E4B65E /* CategoryCell.swift in Sources */,
 				47FB54D12968590000B3029C /* AppDelegate.swift in Sources */,
 				47FB54EA29685EA400B3029C /* MessageViewController.swift in Sources */,
 				373C5623297E7DEC00F00F1F /* SearchListViewController.swift in Sources */,
+				379365422982D254009ABF2C /* UploadInput.swift in Sources */,
 				47C9C2E829781D3000DF89D8 /* UserPrivacyAllowViewController.swift in Sources */,
 				4752665329751999008D5F1D /* LoginModel.swift in Sources */,
 				4752664C2975177D008D5F1D /* SignUpInput.swift in Sources */,
@@ -461,6 +495,7 @@
 				47C9C2EB297931DB00DF89D8 /* UIImage.swift in Sources */,
 				47FB54E629685E8300B3029C /* HomeViewController.swift in Sources */,
 				4752664029730CD3008D5F1D /* UploadViewController.swift in Sources */,
+				37F6EB0929827EC20088EAD8 /* SearchCollectionViewCell.swift in Sources */,
 				4752664729750F30008D5F1D /* LoginDataManager.swift in Sources */,
 				47FB54F0296867D300B3029C /* LoginViewController.swift in Sources */,
 				370D8BB8296FCF7F00E4B65E /* CategoryViewController.swift in Sources */,
@@ -473,7 +508,11 @@
 				47C9C2E329769DE500DF89D8 /* UITextField.swift in Sources */,
 				47FB54F729686A2300B3029C /* UIColor.swift in Sources */,
 				47C9C2F3297964F700DF89D8 /* AddPostModel.swift in Sources */,
+				D3C0DEF2298282E3003A62B0 /* SplashViewController.swift in Sources */,
+				4770C659297ECAB4009E3E58 /* HomeFeedViewModel.swift in Sources */,
+				379365462982D709009ABF2C /* UploadDataManager.swift in Sources */,
 				47C9C2F929796F0B00DF89D8 /* AllPostModel.swift in Sources */,
+				37F6EB0D29827EFC0088EAD8 /* SearchFeedViewModel.swift in Sources */,
 				47526655297529AE008D5F1D /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
